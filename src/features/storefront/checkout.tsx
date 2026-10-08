@@ -139,10 +139,10 @@ export function StoreCheckout() {
           </label>
         </div>
         <div className="demo-payment-box">
-          <strong>Demo payment</strong>
+          <strong>Payment</strong>
           <p>
-            This checkout creates a demo order and reserves stock. No money is
-            collected; confirm demo payment on the next screen.
+            This checkout creates a order and reserves stock. No money is
+            collected; confirm payment on the next screen.
           </p>
         </div>
         {!lines.length && (
@@ -155,7 +155,7 @@ export function StoreCheckout() {
           disabled={!lines.length || isSubmitting}
           type="submit"
         >
-          Place demo order · {formatMoney(subtotal + deliveryFee)}
+          Place order · {formatMoney(subtotal + deliveryFee)}
         </button>
       </form>
       <StoreOrderSummary

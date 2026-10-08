@@ -36,7 +36,7 @@ export const demoConversations = [
     stage: "Checkout Sent",
     productId: 1,
     demoReplies: [
-      "Thanks for checking. Please let me know when my demo payment is confirmed.",
+      "Thanks for checking. Please let me know when my payment is confirmed.",
       "Great. Please pack the two handbags together.",
       "Thank you! I’ll wait for the delivery update.",
     ],

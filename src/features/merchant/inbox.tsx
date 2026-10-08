@@ -66,7 +66,7 @@ export function InboxPage() {
   const sendMessage = ({ composer }: ReplyForm) => {
     sendDemoMessage(conversation.id, composer);
     reset();
-    setNotice("Demo reply added locally. No external message was delivered.");
+    setNotice("reply added locally. No external message was delivered.");
   };
 
   const typing = (pending[conversation.id] ?? 0) > 0;
@@ -134,7 +134,7 @@ export function InboxPage() {
             <span className="message-avatar">{conversation.initials}</span>
             <div>
               <strong>{conversation.name}</strong>
-              <small>{conversation.channel} · Demo conversation</small>
+              <small>{conversation.channel} · Conversation</small>
             </div>
             <button disabled>Assign</button>
             <button disabled>Close</button>
@@ -188,7 +188,7 @@ export function InboxPage() {
               {...register("composer")}
               aria-invalid={!!errors.composer}
               aria-describedby="composer-error"
-              placeholder="Write a demo reply..."
+              placeholder="Write a reply..."
             />
             <FieldError error={errors.composer} id="composer-error" />
             <button disabled={isSubmitting} onClick={handleSubmit(sendMessage)}>

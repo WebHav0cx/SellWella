@@ -110,7 +110,7 @@ export function OrdersPage({
       return;
     }
     toast.success(
-      `${result.order.number} created successfully${mode === "link" ? " with a demo payment link" : ""}.`,
+      `${result.order.number} created successfully${mode === "link" ? " with a payment link" : ""}.`,
     );
     resetBuilder();
   };
@@ -121,7 +121,7 @@ export function OrdersPage({
       return;
     }
     setSelectedId(result.order.id);
-    toast.success(`${order.number} marked paid in demo mode.`);
+    toast.success(`${order.number} marked paid .`);
   };
   const cancelOrder = (order: BusinessOrder) => {
     const result = cancelCommerceOrder(order.id);
@@ -238,7 +238,7 @@ export function OrdersPage({
                     </span>
                     <div>
                       <strong>Payment confirmed</strong>
-                      <p>Demo confirmation — no external provider event</p>
+                      <p>Confirmation — no external provider event</p>
                     </div>
                     <small>Current</small>
                   </div>
@@ -248,7 +248,7 @@ export function OrdersPage({
           </div>
           <aside className="order-actions-panel">
             <div className="demo-banner">
-              <strong>Demo transaction mode</strong>
+              <strong> Transaction mode</strong>
               <p>
                 No payment provider is connected. Confirmation only updates
                 local demonstration data.
@@ -259,12 +259,12 @@ export function OrdersPage({
                 className="create-button full-button"
                 onClick={() => confirmDemoPayment(selected)}
               >
-                Confirm demo payment
+                Confirm payment
               </button>
             )}
             {selected.paymentLink ? (
               <div className="payment-link-box">
-                <span>Demo payment link</span>
+                <span>Payment link</span>
                 <strong>{selected.paymentLink}</strong>
                 <button
                   onClick={() => copyToClipboard(selected.paymentLink ?? "")}
@@ -286,11 +286,11 @@ export function OrdersPage({
                       ),
                     );
                     setNotice(
-                      "Demo payment link generated. It cannot collect a real payment.",
+                      "Payment link generated. It cannot collect a real payment.",
                     );
                   }}
                 >
-                  Generate demo payment link
+                  Generate payment link
                 </button>
               )
             )}

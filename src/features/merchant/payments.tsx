@@ -46,7 +46,7 @@ export function PaymentsPage({
         </button>
       </section>
       <div className="demo-banner horizontal">
-        <strong>Demo payment environment</strong>
+        <strong> Payment environment</strong>
         <p>
           No provider is connected. Records below demonstrate transaction states
           and cannot move real money.
@@ -56,7 +56,7 @@ export function PaymentsPage({
         <article>
           <span>Confirmed collections</span>
           <strong>{formatMoney(collected)}</strong>
-          <small>Demo payments marked paid</small>
+          <small> Payments marked paid</small>
         </article>
         <article>
           <span>Pending payments</span>
@@ -127,7 +127,7 @@ export function PaymentsPage({
                   </button>
                   <span>
                     {order.paymentStatus === "Paid"
-                      ? "Demo card"
+                      ? "Card"
                       : "Awaiting payment"}
                   </span>
                   <strong>{formatMoney(order.total)}</strong>

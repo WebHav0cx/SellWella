@@ -139,7 +139,7 @@ export function SignupPage({ invited = false }: { invited?: boolean }) {
             </small>
           )}
           <button className="auth-submit" disabled={loading || !isReady}>
-            {loading ? "Creating demo account..." : "Create Account"}
+            {loading ? "Creating account..." : "Create Account"}
           </button>
         </form>
         <button className="social-auth" disabled>

@@ -36,7 +36,7 @@ export const verificationSchema = z.object({
     .string()
     .refine(
       (code) => code === "" || /^\d{6}$/.test(code),
-      "Enter six digits or leave the field empty for demo verification.",
+      "Enter six digits or leave the field empty for verification.",
     ),
 });
 export type VerificationForm = z.infer<typeof verificationSchema>;

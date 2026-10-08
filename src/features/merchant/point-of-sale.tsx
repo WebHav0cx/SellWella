@@ -75,9 +75,7 @@ export function PointOfSalePage() {
       })),
       mode: "paid",
       paymentMethod:
-        values.paymentMethod === "Cash"
-          ? "POS cash"
-          : "POS demo digital payment",
+        values.paymentMethod === "Cash" ? "POS cash" : "POS digital payment",
     });
     if (!result.ok || !result.order) {
       setError(result.error ?? "Sale could not be completed.");
@@ -103,7 +101,7 @@ export function PointOfSalePage() {
           <div>
             <span>Point of Sale</span>
             <h1>Quick Sale</h1>
-            <p>Cashier: Amina · Main Store · Demo register open</p>
+            <p>Cashier: Amina · Main Store · register open</p>
           </div>
           <button disabled>Close register</button>
         </div>
@@ -208,13 +206,13 @@ export function PointOfSalePage() {
         <div className="pos-payment">
           <h3>Payment method</h3>
           <div>
-            {["Cash", "Demo digital"].map((item) => (
+            {["Cash", " digital"].map((item) => (
               <button
                 className={paymentMethod === item ? "active" : ""}
                 onClick={() =>
                   setValue(
                     "paymentMethod",
-                    item === "Cash" ? "Cash" : "Demo digital",
+                    item === "Cash" ? "Cash" : " Digital",
                   )
                 }
                 key={item}
@@ -223,7 +221,7 @@ export function PointOfSalePage() {
               </button>
             ))}
           </div>
-          {paymentMethod === "Demo digital" && (
+          {paymentMethod === " digital" && (
             <p>No payment provider will be contacted.</p>
           )}
         </div>

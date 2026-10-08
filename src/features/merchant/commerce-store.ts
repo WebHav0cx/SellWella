@@ -284,7 +284,7 @@ export function createCommerceStore() {
       });
       return { ok: true, order };
     },
-    confirmDemoPayment: (id, method = "Demo digital payment") => {
+    confirmDemoPayment: (id, method = "Digital payment") => {
       const state = get();
       const order = state.orders.find((item) => item.id === id);
       if (!order) return { ok: false, error: "Order not found." };
@@ -314,7 +314,7 @@ export function createCommerceStore() {
       };
       let activities = activity(state.activities, {
         type: "payment",
-        title: "Demo payment confirmed",
+        title: "Payment confirmed",
         description: `${formatMoney(order.total)} recorded for ${order.number}.`,
         priority: "success",
         destination: `/orders?order=${id}`,

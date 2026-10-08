@@ -16,7 +16,7 @@ export function LandingFooter() {
         <a href="#features">Features</a>
         <a href="#how-it-works">How it works</a>
         <a href="#pricing">Pricing</a>
-        <Link href="/app">Demo workspace</Link>
+        <Link href="/app">Workspace</Link>
       </div>
       <div>
         <strong>Company</strong>

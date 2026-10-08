@@ -29,7 +29,7 @@ export function ReviewStep() {
       return;
     }
     update((current) => ({ ...current, complete: true, step: 4 }));
-    toast.success("Demo workspace setup complete");
+    toast.success("Workspace setup complete");
     router.push("/onboarding/complete");
   };
   return (
@@ -88,7 +88,7 @@ export function ReviewStep() {
             <TriangleAlert aria-hidden="true" />
             <span>
               <strong>{label}</strong>
-              <small>Not connected · Demo only</small>
+              <small>Not connected </small>
             </span>
             <em>Later</em>
           </article>

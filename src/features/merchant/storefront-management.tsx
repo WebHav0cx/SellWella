@@ -44,9 +44,9 @@ export function StorefrontManagementPage() {
         </button>
       </section>
       <div className="demo-banner horizontal">
-        <strong>Published demo store</strong>
+        <strong>Published store</strong>
         <p>
-          This public storefront uses browser-persisted demo products, stock,
+          This public storefront uses browser-persisted products, stock,
           customers and orders.
         </p>
       </div>
@@ -54,7 +54,7 @@ export function StorefrontManagementPage() {
         <article>
           <span>Store status</span>
           <strong>Published</strong>
-          <small>Public demo route is active</small>
+          <small>Public store route is active</small>
         </article>
         <article>
           <span>Published products</span>
@@ -75,7 +75,7 @@ export function StorefrontManagementPage() {
                 .reduce((sum, order) => sum + order.total, 0),
             )}
           </strong>
-          <small>Confirmed demo payments</small>
+          <small>Confirmed payments</small>
         </article>
       </section>
       <section className="store-management-grid">
@@ -109,7 +109,7 @@ export function StorefrontManagementPage() {
               <span>{index + 1}</span>
               <strong>
                 {item}
-                <small>{index < 2 ? "Configured" : "Demo defaults"}</small>
+                <small>{index < 2 ? "Configured" : " defaults"}</small>
               </strong>
               <b>Ready</b>
             </div>

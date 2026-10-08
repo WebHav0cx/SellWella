@@ -3,7 +3,7 @@ export const initialActivities: ActivityEvent[] = [
   {
     id: 1,
     type: "payment",
-    title: "Demo payment confirmed",
+    title: "Payment confirmed",
     description: "₦31,000 recorded for order SW-00128.",
     createdAt: "12 minutes ago",
     read: false,

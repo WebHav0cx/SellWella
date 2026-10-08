@@ -39,7 +39,7 @@ export function StoreConfirmation({ orderId }: { orderId: number }) {
       </span>
       <p>
         {paid
-          ? "Demo payment confirmed"
+          ? " Payment confirmed"
           : cancelled
             ? "Order cancelled"
             : "Order reserved"}
@@ -49,7 +49,7 @@ export function StoreConfirmation({ orderId }: { orderId: number }) {
           ? "Thank you for your order."
           : cancelled
             ? "This order has been cancelled."
-            : "Your order is awaiting demo payment."}
+            : "Your order is awaiting payment."}
       </h1>
       <p>
         Order {order.number} · {formatMoney(order.total)}
@@ -69,12 +69,12 @@ export function StoreConfirmation({ orderId }: { orderId: number }) {
         <button
           className="store-primary"
           onClick={() => {
-            const result = pay(order.id, "Storefront demo payment");
+            const result = pay(order.id, "Storefront payment");
             if (result.ok) toast.success(" Payment confirmed");
             else toast.error(result.error);
           }}
         >
-          Confirm demo payment
+          Confirm payment
         </button>
       )}
       <Link className="store-secondary" href={`/store/${slug}`}>

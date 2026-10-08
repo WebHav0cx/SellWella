@@ -59,7 +59,7 @@ export function VerifyEmailPage({
         </span>
         {state === "success" ? (
           <>
-            <PublicStatus tone="success" title="Demo verification complete">
+            <PublicStatus tone="success" title="Verification complete">
               No real email service was contacted.
             </PublicStatus>
             <h1>Email verified</h1>
@@ -87,7 +87,7 @@ export function VerifyEmailPage({
                 id="code"
                 label="Verification code"
                 error={errors.code?.message}
-                hint="Enter any six digits, or leave blank for demo verification."
+                hint="Enter six digits code, or resend vefification code"
               >
                 <input
                   id="code"

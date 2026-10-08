@@ -22,7 +22,7 @@ const stepCopy = [
   {
     title: "Let’s add your first product",
     description:
-      "This product will appear in your shared catalogue, inventory and public demo store.",
+      "This product will appear in your shared catalogue, inventory and public store.",
   },
   {
     title: "You’re almost ready!",
@@ -38,7 +38,7 @@ export function OnboardingPage() {
     <div className="onboarding-page">
       <header className="onboarding-header">
         <SellWellaLogo />
-        <span>Progress saved in this browser · Demo setup</span>
+        <span>Progress saved in this browser · Setup</span>
         <ThemeToggle />
         <Link href="/login">Save & exit</Link>
       </header>

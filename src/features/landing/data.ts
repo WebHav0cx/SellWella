@@ -78,7 +78,7 @@ export const faqs = [
   ],
   [
     "Does SellWella support payments?",
-    "The current public product is a demonstration environment. Payment screens and demo confirmations exist, but a production payment provider is not yet represented as connected.",
+    "The current public product is a demonstration environment. Payment screens and confirmations exist, but a production payment provider is not yet represented as connected.",
   ],
   [
     "Do I need technical knowledge?",

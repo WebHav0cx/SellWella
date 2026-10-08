@@ -10,7 +10,7 @@ export const replySchema = z.object({
 export type ReplyForm = z.infer<typeof replySchema>;
 export const posSchema = z.object({
   customerId: z.number().int().positive("Select a customer."),
-  paymentMethod: z.enum(["Cash", "Demo digital"]),
+  paymentMethod: z.enum(["Cash", "Digital"]),
 });
 export type PosForm = z.infer<typeof posSchema>;
 export const checkoutSchema = customerSchema

@@ -87,7 +87,7 @@ export function ProductDemo() {
         </div>
       </div>
       <Link className="demo-enter" href="/app">
-        Enter Demo Workspace <ArrowRight size={18} aria-hidden="true" />
+        Enter Workspace <ArrowRight size={18} aria-hidden="true" />
       </Link>
     </section>
   );

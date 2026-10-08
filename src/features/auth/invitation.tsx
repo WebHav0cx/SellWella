@@ -38,7 +38,7 @@ export function InvitationPage({ token }: { token: string }) {
           </>
         ) : accepted ? (
           <>
-            <PublicStatus tone="success" title="Demo invitation acknowledged">
+            <PublicStatus tone="success" title="Invitation acknowledged">
               Production membership still requires a server-validated
               invitation.
             </PublicStatus>
@@ -78,7 +78,7 @@ export function InvitationPage({ token }: { token: string }) {
             </div>
 
             <button className="auth-submit" onClick={() => setAccepted(true)}>
-              Accept Demo Invitation
+              Accept Invitation
             </button>
             <small className="invite-security">
               A production invitation must be validated by the server.

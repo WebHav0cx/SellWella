@@ -49,7 +49,7 @@ export function StorefrontShell({
         {children}
         <footer className="store-footer" id="store-about">
           <strong>{name}</strong>
-          <span>Powered by SellWella · Demo storefront</span>
+          <span>Powered by SellWella</span>
         </footer>
       </div>
     </StoreCartProvider>

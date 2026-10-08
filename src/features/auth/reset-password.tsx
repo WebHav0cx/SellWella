@@ -89,7 +89,7 @@ export function ResetPasswordPage({
                 className="auth-submit"
                 disabled={isSubmitting || !isReady}
               >
-                Update Demo Password
+                Update Password
               </button>
             </form>
           </>

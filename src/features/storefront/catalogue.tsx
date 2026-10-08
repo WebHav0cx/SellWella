@@ -41,7 +41,7 @@ export function StoreCatalogue() {
       </section>
       <section className="store-benefits">
         <span>
-          <strong>Secure demo checkout</strong>
+          <strong>Secure checkout</strong>
           <small>No real payment is processed</small>
         </span>
         <span>
@@ -49,7 +49,7 @@ export function StoreCatalogue() {
           <small>Pickup also available</small>
         </span>
         <span>
-          <strong>Live demo availability</strong>
+          <strong>Live availability</strong>
           <small>Connected to store inventory</small>
         </span>
       </section>

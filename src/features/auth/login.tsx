@@ -38,7 +38,7 @@ export function LoginPage({
   const submit = (form: LoginForm) => {
     if (
       !saveDemoSession({
-        name: "Demo Merchant",
+        name: "Merchant",
         email: form.email,
         verified: true,
         demo: true,
