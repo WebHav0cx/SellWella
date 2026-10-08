@@ -36,7 +36,7 @@ function SalesTooltip({
 }: TooltipContentProps & { monthLabel: string }) {
   if (!active || !payload.length) return null;
   return (
-    <div className="rounded-lg border border-border bg-white px-3 py-2 text-[11px] text-ink shadow-sm">
+    <div className="rounded-lg border border-border bg-surface px-3 py-2 text-[11px] text-ink shadow-sm">
       <p className="mb-2 font-semibold">
         {Math.round(Number(label))} {monthLabel}
       </p>
@@ -45,7 +45,7 @@ function SalesTooltip({
           <div key={String(entry.dataKey)} className="flex items-center gap-2">
             <span
               aria-hidden="true"
-              className={`size-2 rounded-full ${entry.dataKey === "current" ? "bg-primary" : "bg-previous-line-stroke-15"}`}
+              className={`size-2 rounded-full ${entry.dataKey === "current" ? "bg-primary-text" : "bg-previous-line-stroke-15"}`}
             />
             <span>{entry.name}</span>
             <strong className="ml-auto tabular-nums">
@@ -153,14 +153,14 @@ export function SalesChart({
                 type="monotone"
                 dataKey="current"
                 name="This month"
-                stroke="var(--color-primary)"
+                stroke="var(--color-primary-text)"
                 strokeWidth={2}
                 fill={`url(#${gradientId})`}
                 dot={false}
                 activeDot={{
                   r: 4,
-                  fill: "var(--color-white)",
-                  stroke: "var(--color-primary)",
+                  fill: "var(--color-surface)",
+                  stroke: "var(--color-primary-text)",
                   strokeWidth: 2,
                 }}
                 isAnimationActive={false}
@@ -170,7 +170,7 @@ export function SalesChart({
                   x={highlighted.day}
                   y={highlighted.current}
                   r={4}
-                  fill="var(--color-white)"
+                  fill="var(--color-surface)"
                   stroke="var(--color-primary-bright)"
                   strokeWidth={2}
                 />

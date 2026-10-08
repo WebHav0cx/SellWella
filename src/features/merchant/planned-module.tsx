@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ROUTES } from "@/lib/routes";
 import { Icon } from "@/components/ui/icon";
 export function PlannedModule({ name }: { name: string }) {
   return (
@@ -13,10 +12,7 @@ export function PlannedModule({ name }: { name: string }) {
         This module is next in the connected commerce rollout. Products and
         Inventory are now live and share the same catalogue data.
       </p>
-      <Link
-        href={ROUTES.OVERVIEW}
-        className="secondary-button inline-flex items-center"
-      >
+      <Link href="/" className="secondary-button inline-flex items-center">
         Back to overview
       </Link>
     </div>

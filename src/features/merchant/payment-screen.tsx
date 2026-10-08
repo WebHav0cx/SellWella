@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/lib/routes";
 import { PaymentsPage } from "./payments";
 export function PaymentScreen({
   initialTab,
@@ -11,7 +10,9 @@ export function PaymentScreen({
   return (
     <PaymentsPage
       initialTab={initialTab}
-      onOpenOrder={(order) => router.push(ROUTES.ORDER_DETAIL(order.id))}
+      onOpenOrder={(order) =>
+        router.push(`/orders?order=${encodeURIComponent(String(order.id))}`)
+      }
     />
   );
 }

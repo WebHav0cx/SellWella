@@ -1,16 +1,19 @@
 "use client";
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Command } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Icon } from "@/components/ui/icon";
-import { navGroups, routeByLabel, labelByRoute } from "./navigation";
+import { navGroups } from "./navigation";
 import { MerchantStoreProvider } from "./store";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 export function MerchantShell({ children }: { children: ReactNode }) {
-  const router = useRouter();
-  const navigate = (href: string) => router.push(href);
   const pathname = usePathname();
-  const active = labelByRoute[pathname] ?? "Overview";
+  const active =
+    navGroups
+      .flatMap((group) => group.items)
+      .find((item) => item.href === pathname)?.label ?? "Overview";
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openGroups, setOpenGroups] = useState(
     () => new Set(["Workspace", "Sales & Customers", "Commerce"]),
@@ -29,9 +32,14 @@ export function MerchantShell({ children }: { children: ReactNode }) {
     <div className="app-shell">
       <aside className={`sidebar ${sidebarOpen ? "sidebar-open" : ""}`}>
         <div className="brand-row">
-          <div className="brand-mark">
-            <span>S</span>
-          </div>
+          <Image
+            src="/sellwella-mark.svg"
+            alt=""
+            width={34}
+            height={34}
+            className="shrink-0"
+            priority
+          />
           <div className="brand-name">SellWella</div>
           <button
             className="mobile-close"
@@ -66,7 +74,7 @@ export function MerchantShell({ children }: { children: ReactNode }) {
                 <div className="nav-group-items">
                   {group.items.map((item) => (
                     <Link
-                      href={routeByLabel[item.label]}
+                      href={item.href}
                       aria-current={active === item.label ? "page" : undefined}
                       className={`nav-item ${
                         active === item.label ? "active" : ""
@@ -90,15 +98,15 @@ export function MerchantShell({ children }: { children: ReactNode }) {
         </nav>
 
         <div className="sidebar-footer">
-          <button
+          <Link
+            href="/settings"
             className={`nav-item ${
               active === "Settings & Integrations" ? "active" : ""
             }`}
-            onClick={() => navigate(routeByLabel["Settings & Integrations"])}
           >
             <Icon name="settings" />
             <span>Settings</span>
-          </button>
+          </Link>
           <div className="help-card">
             <div className="help-icon">
               <Icon name="sparkles" size={17} />
@@ -145,6 +153,7 @@ export function MerchantShell({ children }: { children: ReactNode }) {
             </kbd>
           </div>
           <div className="topbar-actions">
+            <ThemeToggle />
             <button className="icon-button" aria-label="Notifications">
               <Icon name="bell" />
               <span className="notification-dot" />

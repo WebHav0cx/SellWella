@@ -1,94 +1,119 @@
-import { ROUTES } from "@/lib/routes";
 import type { IconName } from "@/components/ui/icon";
 export const navGroups = [
   {
     label: "Workspace",
     items: [
-      { icon: "home" as IconName, label: "Overview" },
-      { icon: "bell" as IconName, label: "Activity Centre" },
+      { icon: "home" as IconName, label: "Overview", href: "/" },
+      { icon: "bell" as IconName, label: "Activity Centre", href: "/activity" },
     ],
   },
   {
     label: "Sales & Customers",
     items: [
-      { icon: "inbox" as IconName, label: "Unified Inbox", count: 3 },
-      { icon: "customers" as IconName, label: "Customers & CRM" },
-      { icon: "orders" as IconName, label: "Orders" },
-      { icon: "card" as IconName, label: "Point of Sale" },
-      { icon: "trend" as IconName, label: "Sales Recovery" },
+      {
+        icon: "inbox" as IconName,
+        label: "Unified Inbox",
+        href: "/inbox",
+        count: 3,
+      },
+      {
+        icon: "customers" as IconName,
+        label: "Customers & CRM",
+        href: "/customers",
+      },
+      { icon: "orders" as IconName, label: "Orders", href: "/orders" },
+      { icon: "card" as IconName, label: "Point of Sale", href: "/pos" },
+      {
+        icon: "trend" as IconName,
+        label: "Sales Recovery",
+        href: "/sales-recovery",
+      },
     ],
   },
   {
     label: "Commerce",
     items: [
-      { icon: "products" as IconName, label: "Products" },
-      { icon: "inventory" as IconName, label: "Inventory" },
-      { icon: "store" as IconName, label: "Storefront" },
-      { icon: "sparkles" as IconName, label: "Promotions" },
+      { icon: "products" as IconName, label: "Products", href: "/products" },
+      { icon: "inventory" as IconName, label: "Inventory", href: "/inventory" },
+      { icon: "store" as IconName, label: "Storefront", href: "/storefront" },
+      {
+        icon: "sparkles" as IconName,
+        label: "Promotions",
+        href: "/promotions",
+      },
     ],
   },
   {
     label: "Finance",
     items: [
-      { icon: "payments" as IconName, label: "Payments" },
-      { icon: "card" as IconName, label: "Payment Links" },
-      { icon: "orders" as IconName, label: "Quotations & Invoices" },
-      { icon: "wallet" as IconName, label: "Expenses & Accounting" },
+      { icon: "payments" as IconName, label: "Payments", href: "/payments" },
+      {
+        icon: "card" as IconName,
+        label: "Payment Links",
+        href: "/payments/links",
+      },
+      {
+        icon: "orders" as IconName,
+        label: "Quotations & Invoices",
+        href: "/invoices",
+      },
+      {
+        icon: "wallet" as IconName,
+        label: "Expenses & Accounting",
+        href: "/finances",
+      },
     ],
   },
   {
     label: "Operations",
     items: [
-      { icon: "package" as IconName, label: "Deliveries & Fulfilment" },
-      { icon: "arrow" as IconName, label: "Returns" },
-      { icon: "customers" as IconName, label: "Team Management" },
+      {
+        icon: "package" as IconName,
+        label: "Deliveries & Fulfilment",
+        href: "/fulfilment",
+      },
+      { icon: "arrow" as IconName, label: "Returns", href: "/returns" },
+      {
+        icon: "customers" as IconName,
+        label: "Team Management",
+        href: "/team",
+      },
     ],
   },
   {
     label: "Intelligence",
     items: [
-      { icon: "reports" as IconName, label: "Reports & Analytics" },
-      { icon: "sparkles" as IconName, label: "SellWella AI" },
-      { icon: "settings" as IconName, label: "Automation Centre" },
+      {
+        icon: "reports" as IconName,
+        label: "Reports & Analytics",
+        href: "/analytics",
+      },
+      {
+        icon: "sparkles" as IconName,
+        label: "SellWella AI",
+        href: "/ai-assistant",
+      },
+      {
+        icon: "settings" as IconName,
+        label: "Automation Centre",
+        href: "/automations",
+      },
     ],
   },
   {
     label: "Administration",
     items: [
-      { icon: "settings" as IconName, label: "Settings & Integrations" },
-      { icon: "card" as IconName, label: "Subscription" },
-      { icon: "message" as IconName, label: "Help & Support" },
+      {
+        icon: "settings" as IconName,
+        label: "Settings & Integrations",
+        href: "/settings",
+      },
+      { icon: "card" as IconName, label: "Subscription", href: "/billing" },
+      {
+        icon: "message" as IconName,
+        label: "Help & Support",
+        href: "/support",
+      },
     ],
   },
 ];
-
-export const routeByLabel: Record<string, string> = {
-  Overview: ROUTES.OVERVIEW,
-  "Activity Centre": ROUTES.ACTIVITY,
-  "Unified Inbox": ROUTES.INBOX,
-  "Customers & CRM": ROUTES.CUSTOMERS,
-  Orders: ROUTES.ORDERS,
-  "Point of Sale": ROUTES.POS,
-  "Sales Recovery": ROUTES.SALES_RECOVERY,
-  Products: ROUTES.PRODUCTS,
-  Inventory: ROUTES.INVENTORY,
-  Storefront: ROUTES.STOREFRONT,
-  Promotions: ROUTES.PROMOTIONS,
-  Payments: ROUTES.PAYMENTS,
-  "Payment Links": ROUTES.PAYMENT_LINKS,
-  "Quotations & Invoices": ROUTES.INVOICES,
-  "Expenses & Accounting": ROUTES.FINANCES,
-  "Deliveries & Fulfilment": ROUTES.FULFILMENT,
-  Returns: ROUTES.RETURNS,
-  "Team Management": ROUTES.TEAM,
-  "Reports & Analytics": ROUTES.ANALYTICS,
-  "SellWella AI": ROUTES.AI_ASSISTANT,
-  "Automation Centre": ROUTES.AUTOMATIONS,
-  "Settings & Integrations": ROUTES.SETTINGS,
-  Subscription: ROUTES.BILLING,
-  "Help & Support": ROUTES.SUPPORT,
-};
-
-export const labelByRoute = Object.fromEntries(
-  Object.entries(routeByLabel).map(([label, route]) => [route, label]),
-);
