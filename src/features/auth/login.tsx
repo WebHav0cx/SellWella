@@ -14,10 +14,6 @@ import { PublicStatus } from "@/components/public/public-status";
 
 import { saveDemoSession } from "./demo-session";
 import { loginSchema, type LoginForm } from "./schemas";
-import {
-  onboardingComplete,
-  readOnboardingProgress,
-} from "@/features/onboarding/schema";
 export function LoginPage({
   invited = false,
   reason,
@@ -49,16 +45,12 @@ export function LoginPage({
         invited,
       })
     ) {
-      toast.error("Unable to save demo progress in this browser.");
+      toast.error("Unable to save progress in this browser.");
       return;
     }
     resetField("password");
-    toast.success("Demo sign-in complete");
-    router.push(
-      invited || onboardingComplete(readOnboardingProgress())
-        ? "/app"
-        : "/onboarding",
-    );
+    toast.success("Sign in successful");
+    router.push("/app");
   };
 
   return (
@@ -104,23 +96,20 @@ export function LoginPage({
               placeholder="amina@example.com"
             />
           </FormField>
-          <div className="forgot-row">
-            <span>Password</span>
-            <Link href="/forgot-password">Forgot password?</Link>
-          </div>
           <PasswordField
             label=""
             registration={register("password")}
             error={errors.password?.message}
             autoComplete="current-password"
           />
+          <div className="forgot-row">
+            <Link href="/forgot-password">Forgot password?</Link>
+          </div>
           <button className="auth-submit" disabled={loading || !isReady}>
-            {loading ? "Opening demo workspace..." : "Continue in Demo Mode"}
+            {loading ? "Sigining In..." : "Sign In"}
           </button>
         </form>
-        <button className="social-auth" disabled>
-          Google sign-in not configured
-        </button>
+
         <p className="auth-switch">
           New to SellWella? <Link href="/signup">Create an account</Link>
         </p>

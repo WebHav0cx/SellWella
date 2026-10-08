@@ -61,7 +61,7 @@ export function StoreCheckout() {
       return;
     }
     clear();
-    toast.success("Demo order reserved");
+    toast.success("Order reserved");
     router.push(`/store/${slug}/confirmation/${result.order.id}`);
   };
   return (

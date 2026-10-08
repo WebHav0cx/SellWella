@@ -31,7 +31,7 @@ export function ResetPasswordPage({
   const submit = () => {
     reset();
     setComplete(true);
-    toast.success("Demo reset complete. No password was stored or changed.");
+    toast.success("Password reset Successful");
   };
   return (
     <div className="focused-public-page">

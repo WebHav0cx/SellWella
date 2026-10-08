@@ -70,7 +70,7 @@ export function StoreConfirmation({ orderId }: { orderId: number }) {
           className="store-primary"
           onClick={() => {
             const result = pay(order.id, "Storefront demo payment");
-            if (result.ok) toast.success("Demo payment confirmed");
+            if (result.ok) toast.success(" Payment confirmed");
             else toast.error(result.error);
           }}
         >

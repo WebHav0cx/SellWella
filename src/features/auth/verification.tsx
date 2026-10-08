@@ -40,15 +40,15 @@ export function VerifyEmailPage({
   const verify = () => {
     const session = readDemoSession();
     if (!session) {
-      toast.error("Create a demo account or sign in before verifying.");
+      toast.error("Create an account or sign in before verifying.");
       return;
     }
     if (!saveDemoSession({ ...session, verified: true })) {
-      toast.error("Unable to save demo verification.");
+      toast.error("Unable to save verification.");
       return;
     }
     setState("success");
-    toast.success("Demo verification complete");
+    toast.success(" Verification complete");
   };
   return (
     <div className="focused-public-page">
@@ -85,7 +85,7 @@ export function VerifyEmailPage({
             <form method="post" noValidate onSubmit={handleSubmit(verify)}>
               <FormField
                 id="code"
-                label="Demonstration verification code"
+                label="Verification code"
                 error={errors.code?.message}
                 hint="Enter any six digits, or leave blank for demo verification."
               >
@@ -109,7 +109,7 @@ export function VerifyEmailPage({
                 className="auth-submit"
                 disabled={isSubmitting || !isReady || state === "expired"}
               >
-                Continue Demo Verification
+                Continue Verification
               </button>
             </form>
             <button
@@ -118,10 +118,10 @@ export function VerifyEmailPage({
                 setResent(true);
                 setState("idle");
                 reset();
-                toast.info("Demo code refreshed. No email was sent.");
+                toast.info(" Verification code refreshed. No email was sent.");
               }}
             >
-              {resent ? "Demo code refreshed" : "Resend verification"}
+              {resent ? "Verification code refreshed" : "Resend verification"}
             </button>
             <Link className="focused-link" href="/signup">
               Change email

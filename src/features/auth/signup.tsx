@@ -47,12 +47,12 @@ export function SignupPage({ invited = false }: { invited?: boolean }) {
         invited,
       })
     ) {
-      toast.error("Unable to save demo progress in this browser.");
+      toast.error("Unable to save progress .");
       return;
     }
     resetField("password");
     resetField("confirm");
-    toast.success("Demo account created");
+    toast.success("Account created Successfully");
     router.push(invited ? "/verify-email?invite=demo-team" : "/verify-email");
   };
 

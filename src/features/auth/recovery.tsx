@@ -25,7 +25,7 @@ export function ForgotPasswordPage() {
   });
   const submit = () => {
     setComplete(true);
-    toast.info("Demo recovery request recorded. No email was sent.");
+    toast.info("Password recovery request recorded. No email was sent.");
   };
   return (
     <div className="focused-public-page">
@@ -52,7 +52,7 @@ export function ForgotPasswordPage() {
               className="auth-submit link-button"
               href="/reset-password?demo=true"
             >
-              Open Demo Reset
+              Open Reset
             </Link>
             <Link className="focused-link" href="/login">
               Back to Sign In

@@ -94,13 +94,6 @@ export function InboxPage() {
 
   return (
     <div className="inbox-page">
-      <div className="demo-banner horizontal">
-        <strong>Demo conversation mode</strong>
-        <p>
-          Messaging integrations are not connected. Replies remain in this
-          browser and are not delivered externally.
-        </p>
-      </div>
       <div className="inbox-shell">
         <aside className="conversation-panel">
           <div className="inbox-panel-head">
