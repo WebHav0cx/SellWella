@@ -1,9 +1,13 @@
 "use client";
 import Link from "next/link";
+import { useOnboarding } from "@/features/onboarding/store";
+import { nameInitials } from "@/lib/name-initials";
 import { ShoppingBag } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { StoreCartProvider, useStoreCart } from "./cart-store";
 function StoreHeader() {
+  const name =
+    useOnboarding((state) => state.data.business.name) || "Amina’s Fashion";
   const slug = useStoreCart((state) => state.slug);
   const count = useStoreCart((state) =>
     state.cart.reduce((sum, line) => sum + line.quantity, 0),
@@ -11,8 +15,8 @@ function StoreHeader() {
   return (
     <header className="store-header">
       <Link className="store-brand" href={`/store/${slug}`}>
-        <span>AF</span>
-        <strong>Amina&apos;s Fashion</strong>
+        <span>{nameInitials(name)}</span>
+        <strong>{name}</strong>
       </Link>
       <nav aria-label="Store navigation">
         <Link href={`/store/${slug}`}>Shop</Link>
@@ -35,13 +39,16 @@ export function StorefrontShell({
   slug: string;
   children: React.ReactNode;
 }) {
+  const name =
+    useOnboarding((state) => state.data.business.name) || "Amina’s Fashion";
+  const colour = useOnboarding((state) => state.data.store.colour);
   return (
     <StoreCartProvider key={slug} slug={slug}>
-      <div className="store-app">
+      <div className="store-app" data-brand={colour}>
         <StoreHeader />
         {children}
         <footer className="store-footer" id="store-about">
-          <strong>Amina&apos;s Fashion</strong>
+          <strong>{name}</strong>
           <span>Powered by SellWella · Demo storefront</span>
         </footer>
       </div>

@@ -1,6 +1,8 @@
 "use client";
 
 import { MerchantStoreProvider } from "@/features/merchant/store";
+import { DemoSessionProvider } from "@/features/auth/session-provider";
+import { OnboardingProvider } from "@/features/onboarding/store";
 import { Toaster } from "sonner";
 import { ThemeProvider, useTheme } from "@/components/theme-provider";
 
@@ -12,7 +14,11 @@ function ThemeToaster() {
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
-      <MerchantStoreProvider>{children}</MerchantStoreProvider>
+      <DemoSessionProvider>
+        <OnboardingProvider>
+          <MerchantStoreProvider>{children}</MerchantStoreProvider>
+        </OnboardingProvider>
+      </DemoSessionProvider>
       <ThemeToaster />
     </ThemeProvider>
   );

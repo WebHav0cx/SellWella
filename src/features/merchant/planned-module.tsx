@@ -12,7 +12,7 @@ export function PlannedModule({ name }: { name: string }) {
         This module is next in the connected commerce rollout. Products and
         Inventory are now live and share the same catalogue data.
       </p>
-      <Link href="/" className="secondary-button inline-flex items-center">
+      <Link href="/app" className="secondary-button inline-flex items-center">
         Back to overview
       </Link>
     </div>

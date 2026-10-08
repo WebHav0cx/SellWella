@@ -10,6 +10,11 @@ export const demoConversations = [
     unread: 2,
     stage: "Interested",
     productId: 3,
+    demoReplies: [
+      "Thank you! Could you send me the checkout link for the blue dress?",
+      "Perfect. Can you deliver it to Lekki tomorrow?",
+      "That works for me. Thank you for your help!",
+    ],
     messages: [
       { from: "customer", text: "Hi, is the blue dress available in my size?" },
       {
@@ -30,6 +35,11 @@ export const demoConversations = [
     unread: 0,
     stage: "Checkout Sent",
     productId: 1,
+    demoReplies: [
+      "Thanks for checking. Please let me know when my demo payment is confirmed.",
+      "Great. Please pack the two handbags together.",
+      "Thank you! I’ll wait for the delivery update.",
+    ],
     messages: [
       { from: "customer", text: "I've made payment for the two handbags." },
       {
@@ -49,6 +59,11 @@ export const demoConversations = [
     unread: 1,
     stage: "New Enquiry",
     productId: 2,
+    demoReplies: [
+      "Thanks! I’m in Ikeja. Is store pickup also available?",
+      "I’ll choose delivery. Could you prepare a checkout link for the heels?",
+      "Lovely, thank you. I’ll review the order details.",
+    ],
     messages: [{ from: "customer", text: "How much is delivery to Ikeja?" }],
   },
 ];

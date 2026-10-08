@@ -18,6 +18,7 @@ export function QuantityControl({
     <div className="quantity-control">
       <button
         type="button"
+        className="shrink-0 p-0"
         aria-label={`Remove one ${label}`}
         disabled={value <= min}
         onClick={onDecrease}
@@ -27,6 +28,7 @@ export function QuantityControl({
       <b aria-live="polite">{value}</b>
       <button
         type="button"
+        className="shrink-0 p-0"
         aria-label={`Add one ${label}`}
         disabled={value >= max}
         onClick={onIncrease}

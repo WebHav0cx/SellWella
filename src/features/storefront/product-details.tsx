@@ -44,8 +44,8 @@ export function StoreProductDetails({ productId }: { productId: number }) {
           <h1>{product.name}</h1>
           <strong>{formatMoney(product.price)}</strong>
           <p>
-            A versatile, thoughtfully selected piece designed to fit beautifully
-            into your everyday wardrobe.
+            {product.description ||
+              "A versatile, thoughtfully selected piece designed to fit beautifully into your everyday wardrobe."}
           </p>
           <label>
             Choose option

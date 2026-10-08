@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { replySchema, type ReplyForm } from "./connected-schemas";
 import { FieldError } from "@/components/ui/field-error";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDemoChat, type ChatMessage } from "./use-demo-chat";
+import { TypingIndicator } from "./typing-indicator";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useMerchantStore } from "./store";
@@ -36,15 +38,8 @@ export function InboxPage() {
   const setComposer = (value: string) =>
     setValue("composer", value, { shouldValidate: true });
   const [search, setSearch] = useState("");
-  const [messages, setMessages] = useState<
-    Record<
-      number,
-      Array<{
-        from: string;
-        text: string;
-      }>
-    >
-  >({});
+  const { messages, pending, sendMessage: sendDemoMessage } = useDemoChat();
+  const threadElement = useRef<HTMLDivElement>(null);
   const [quantity, setQuantity] = useState(1);
   const setNotice = (message: string) => {
     if (message) toast.info(message);
@@ -63,22 +58,23 @@ export function InboxPage() {
         item.channel === filter) &&
       item.name.toLowerCase().includes(search.toLowerCase()),
   );
-  const thread = [
+  const thread: ChatMessage[] = [
     ...conversation.messages,
     ...(messages[conversation.id] ?? []),
   ];
 
   const sendMessage = ({ composer }: ReplyForm) => {
-    setMessages((current) => ({
-      ...current,
-      [conversation.id]: [
-        ...(current[conversation.id] ?? []),
-        { from: "merchant", text: composer.trim() },
-      ],
-    }));
+    sendDemoMessage(conversation.id, composer);
     reset();
     setNotice("Demo reply added locally. No external message was delivered.");
   };
+
+  const typing = (pending[conversation.id] ?? 0) > 0;
+  const messageCount = thread.length;
+  useEffect(() => {
+    const element = threadElement.current;
+    if (element) element.scrollTop = element.scrollHeight;
+  }, [selectedId, messageCount, typing]);
 
   const createConversationOrder = () => {
     if (!product) return;
@@ -150,7 +146,7 @@ export function InboxPage() {
             <button disabled>Assign</button>
             <button disabled>Close</button>
           </div>
-          <div className="message-thread">
+          <div className="message-thread" ref={threadElement}>
             <div className="thread-date">Today</div>
             {thread.map((message, index) => (
               <div
@@ -162,10 +158,13 @@ export function InboxPage() {
                   {message.from === "customer"
                     ? conversation.name
                     : "Amina · Human reply"}{" "}
-                  · 10:{24 + index}
+                  ·{" "}
+                  {message.sentAt ??
+                    `10:${String(24 + index).padStart(2, "0")}`}
                 </small>
               </div>
             ))}
+            {typing && <TypingIndicator name={conversation.name} />}
             <div className="ai-suggestion">
               <span>AI suggestion · Review before sending</span>
               <p>

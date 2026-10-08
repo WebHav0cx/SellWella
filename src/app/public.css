@@ -1,0 +1,992 @@
+@layer components {
+  .public-logo {
+    @apply inline-flex shrink-0 items-center gap-2 text-xl font-bold text-ink;
+  }
+  .public-logo img {
+    @apply shrink-0;
+  }
+  .public-logo.light {
+    @apply text-white;
+  }
+  .marketing-site {
+    @apply bg-canvas text-ink;
+  }
+  .marketing-site > main {
+    @apply m-0 w-full max-w-none p-0;
+  }
+  .marketing-nav {
+    @apply sticky top-0 z-30 mx-auto flex items-center justify-between gap-4 border-b border-border bg-surface px-5 py-4 xl:px-10;
+  }
+  .marketing-nav nav {
+    @apply hidden items-center gap-5 text-xs xl:flex;
+  }
+  .marketing-nav nav.open {
+    @apply absolute left-0 top-full flex w-full flex-col border-b border-border bg-surface p-5 xl:static xl:w-auto xl:flex-row xl:border-0 xl:p-0;
+  }
+  .marketing-actions {
+    @apply flex items-center gap-3 text-sm;
+  }
+  .marketing-actions > a:first-of-type {
+    @apply hidden md:block;
+  }
+  .mobile-signin {
+    @apply xl:hidden;
+  }
+  .marketing-menu {
+    @apply grid size-8 shrink-0 place-items-center xl:hidden;
+  }
+  .marketing-primary,
+  .landing-primary,
+  .onboarding-next,
+  .auth-submit {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white;
+  }
+  .marketing-primary {
+    @apply px-3 py-2;
+  }
+  .landing-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-border bg-surface px-5 py-3 text-sm font-semibold;
+  }
+  .landing-hero {
+    @apply mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 lg:grid-cols-2 lg:px-10 lg:py-24;
+  }
+  .landing-hero-copy > span,
+  .landing-section-heading > span,
+  .landing-ai > div > span,
+  .landing-final-cta > span {
+    @apply text-[10px] font-bold uppercase tracking-[0.14em] text-primary-text;
+  }
+  .landing-hero-copy h1 {
+    @apply my-5 text-5xl leading-[1.07] lg:text-7xl;
+  }
+  .landing-hero-copy h1 em {
+    @apply not-italic text-primary-text;
+  }
+  .landing-hero-copy > p {
+    @apply max-w-lg text-base leading-relaxed text-muted;
+  }
+  .landing-hero-copy > div {
+    @apply mt-7 flex flex-wrap gap-3;
+  }
+  .landing-hero-copy > small {
+    @apply mt-5 block text-xs text-muted;
+  }
+  .hero-product-preview {
+    @apply relative min-w-0 pb-14 pt-5;
+  }
+  .hero-glow {
+    @apply absolute inset-0 rounded-full bg-primary-soft blur-3xl;
+  }
+  .hero-dashboard-card {
+    @apply relative overflow-hidden rounded-2xl border border-border bg-surface p-4 shadow-xl md:p-5;
+  }
+  .hero-dashboard-card > header {
+    @apply flex items-center justify-between gap-2 border-b border-border pb-3;
+  }
+  .hero-dashboard-card > header > span {
+    @apply flex items-center gap-2 text-xs;
+  }
+  .hero-dashboard-card header small {
+    @apply text-[10px] text-muted;
+  }
+  .hero-dash-title {
+    @apply my-4 flex items-center justify-between gap-2;
+  }
+  .hero-dash-title > span {
+    @apply grid gap-1;
+  }
+  .hero-dash-title small {
+    @apply text-[9px] text-muted;
+  }
+  .hero-dash-title strong {
+    @apply text-sm;
+  }
+  .hero-dash-title a {
+    @apply inline-flex items-center gap-1 rounded-md bg-primary px-2 py-2 text-[9px] text-white;
+  }
+  .hero-kpis {
+    @apply grid grid-cols-3 gap-2;
+  }
+  .hero-kpis article {
+    @apply grid gap-2 rounded-lg border border-border p-2;
+  }
+  .hero-kpis span,
+  .hero-kpis small {
+    @apply text-[8px] text-muted;
+  }
+  .hero-kpis strong {
+    @apply text-sm md:text-lg;
+  }
+  .hero-chart {
+    @apply my-4 rounded-lg border border-border py-3;
+  }
+  .hero-chart > div:first-child {
+    @apply flex items-center justify-between px-3 text-xs;
+  }
+  .hero-chart .chart-wrap {
+    @apply h-36 px-3;
+  }
+  .hero-orders {
+    @apply grid gap-2 text-[10px];
+  }
+  .hero-orders > span {
+    @apply flex items-center gap-2 rounded-lg bg-canvas px-2 py-2;
+  }
+  .hero-orders i {
+    @apply grid size-5 place-items-center rounded-full bg-primary-soft not-italic text-primary-text;
+  }
+  .hero-orders b {
+    @apply ml-auto;
+  }
+  .hero-orders em {
+    @apply rounded-full bg-primary-soft px-2 py-1 text-[8px] not-italic;
+  }
+  .hero-mobile-card {
+    @apply absolute -bottom-2 right-0 w-44 rounded-xl border border-border bg-surface p-3 shadow-lg;
+  }
+  .hero-mobile-card header {
+    @apply flex items-center gap-2;
+  }
+  .hero-mobile-card header span {
+    @apply grid gap-1;
+  }
+  .hero-mobile-card small,
+  .hero-mobile-card p {
+    @apply text-[9px] text-muted;
+  }
+  .hero-mobile-card strong {
+    @apply text-sm;
+  }
+  .hero-mobile-card > div {
+    @apply my-3 grid gap-2 text-[9px];
+  }
+  .hero-mobile-card > div > span {
+    @apply flex gap-2;
+  }
+  .hero-mobile-card a {
+    @apply rounded border border-border p-1;
+  }
+  .hero-stock-card {
+    @apply absolute -left-2 bottom-4 grid gap-1 rounded-lg border border-border bg-surface p-3 shadow-lg md:-left-6;
+  }
+  .hero-stock-card span,
+  .hero-stock-card small {
+    @apply text-[9px] text-muted;
+  }
+  .hero-stock-card strong {
+    @apply text-xs;
+  }
+  .merchant-problem,
+  .landing-features,
+  .how-it-works,
+  .business-types,
+  .landing-ai,
+  .pricing-section,
+  .faq-section {
+    @apply mx-auto max-w-7xl px-5 py-14 md:px-10 md:py-20;
+  }
+  .landing-section-heading {
+    @apply mx-auto mb-10 max-w-2xl text-center;
+  }
+  .landing-section-heading h2 {
+    @apply mb-4 mt-3 text-3xl md:text-4xl;
+  }
+  .landing-section-heading p {
+    @apply m-0 text-sm leading-relaxed text-muted;
+  }
+  .landing-section-heading.left {
+    @apply ml-0 text-left;
+  }
+  .landing-section-heading.light h2 {
+    @apply text-white;
+  }
+  .landing-section-heading.light p {
+    @apply text-neutral-300;
+  }
+  .landing-section-heading.light > span {
+    @apply text-orange-300;
+  }
+  .problem-grid {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  .problem-grid article,
+  .feature-grid article,
+  .steps-grid article {
+    @apply rounded-xl border border-border bg-surface p-5;
+  }
+  .problem-grid article > span,
+  .feature-grid article > span,
+  .steps-grid article > span {
+    @apply text-xs font-semibold text-primary-text;
+  }
+  .problem-grid h3,
+  .feature-grid h3,
+  .steps-grid h3 {
+    @apply mb-2 mt-4 text-base;
+  }
+  .problem-grid p,
+  .feature-grid p,
+  .steps-grid p {
+    @apply m-0 text-sm leading-relaxed text-muted;
+  }
+  .connected-solution {
+    @apply bg-neutral-950 px-5 py-16 md:px-10;
+  }
+  .commerce-flow {
+    @apply mx-auto grid max-w-7xl grid-cols-2 gap-4 text-white sm:grid-cols-3 lg:grid-cols-6;
+  }
+  .commerce-flow > div {
+    @apply relative grid gap-3 rounded-xl border border-neutral-700 p-4 text-center;
+  }
+  .commerce-flow i {
+    @apply text-xs not-italic text-orange-300;
+  }
+  .commerce-flow strong {
+    @apply text-xs;
+  }
+  .commerce-flow svg {
+    @apply absolute -right-3 top-1/2 hidden bg-neutral-950 text-orange-300 lg:block;
+  }
+  .feature-grid {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5;
+  }
+  .feature-symbol {
+    @apply mt-4 flex text-primary-text;
+  }
+  .feature-grid small {
+    @apply mt-4 block text-xs text-primary-text;
+  }
+  .steps-grid {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-4;
+  }
+  .how-it-works > a {
+    @apply mx-auto mt-8 flex w-fit;
+  }
+  .business-types {
+    @apply grid items-center gap-8 lg:grid-cols-2;
+  }
+  .business-photo {
+    @apply relative overflow-hidden rounded-2xl;
+  }
+  .business-photo img {
+    @apply h-96 w-full object-cover;
+  }
+  .business-photo > span {
+    @apply absolute bottom-5 left-5 rounded-full bg-surface px-4 py-2 text-xs;
+  }
+  .business-types ul {
+    @apply grid gap-4 text-sm;
+  }
+  .business-types li {
+    @apply flex items-center gap-3;
+  }
+  .business-types li svg {
+    @apply text-success;
+  }
+  .landing-ai {
+    @apply grid items-center gap-8 lg:grid-cols-2;
+  }
+  .landing-ai h2 {
+    @apply my-4 text-3xl md:text-4xl;
+  }
+  .landing-ai p {
+    @apply text-sm leading-relaxed text-muted;
+  }
+  .landing-ai ul {
+    @apply my-5 grid list-disc gap-2 pl-5 text-sm text-muted;
+  }
+  .landing-ai > div > a {
+    @apply inline-flex items-center gap-2 text-sm font-semibold text-primary-text;
+  }
+  .ai-marketing-preview {
+    @apply rounded-2xl border border-border bg-surface p-5;
+  }
+  .ai-marketing-preview header {
+    @apply flex items-center gap-3;
+  }
+  .ai-marketing-preview header i {
+    @apply grid size-10 place-items-center rounded-full bg-primary-soft not-italic text-primary-text;
+  }
+  .ai-marketing-preview header span {
+    @apply grid gap-1 text-sm;
+  }
+  .ai-marketing-preview small {
+    @apply text-xs text-muted;
+  }
+  .ai-marketing-preview > p {
+    @apply my-4 rounded-lg bg-canvas p-3;
+  }
+  .ai-marketing-preview > div {
+    @apply grid gap-3 rounded-xl border border-border bg-primary-soft p-4;
+  }
+  .ai-marketing-preview > div > span {
+    @apply text-xs text-primary-text;
+  }
+  .ai-marketing-preview article {
+    @apply flex items-center gap-2 text-xs;
+  }
+  .ai-marketing-preview article em {
+    @apply ml-auto not-italic;
+  }
+  .ai-marketing-preview footer {
+    @apply flex justify-between border-t border-border pt-3 text-sm;
+  }
+  .ai-marketing-preview a {
+    @apply rounded-lg bg-primary px-3 py-2 text-center text-xs font-semibold text-white;
+  }
+  .product-demo {
+    @apply bg-neutral-950 px-5 py-16 md:px-10;
+  }
+  .demo-tabs {
+    @apply mb-5 flex flex-wrap justify-center gap-2;
+  }
+  .demo-tabs button {
+    @apply rounded-full border border-neutral-700 px-4 py-2 text-xs text-neutral-300;
+  }
+  .demo-tabs button.active {
+    @apply border-primary-bright bg-primary text-white;
+  }
+  .demo-window {
+    @apply mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border bg-surface;
+  }
+  .demo-window > header {
+    @apply flex items-center gap-2 border-b border-border px-4 py-3;
+  }
+  .demo-window > header i {
+    @apply size-2 rounded-full bg-muted;
+  }
+  .demo-window > header span {
+    @apply mx-auto text-[10px] text-muted;
+  }
+  .demo-window-body {
+    @apply grid grid-cols-[100px_minmax(0,1fr)] md:grid-cols-[150px_minmax(0,1fr)];
+  }
+  .demo-window-body aside {
+    @apply flex flex-col gap-3 border-r border-border p-3 text-[10px] md:p-5;
+  }
+  .demo-window-body aside span {
+    @apply rounded-md p-1 text-muted;
+  }
+  .demo-window-body aside span.active {
+    @apply bg-primary-soft text-primary-text;
+  }
+  .demo-window-body main {
+    @apply m-0 w-full max-w-none p-4 md:p-6;
+  }
+  .demo-window-body main > span {
+    @apply text-xs text-muted;
+  }
+  .demo-window-body h3 {
+    @apply mb-4 mt-2 text-lg;
+  }
+  .demo-metrics {
+    @apply grid grid-cols-3 gap-2;
+  }
+  .demo-metrics article {
+    @apply grid gap-2 rounded-lg border border-border p-2;
+  }
+  .demo-metrics small {
+    @apply text-[8px] text-muted;
+  }
+  .demo-metrics strong {
+    @apply text-xs md:text-lg;
+  }
+  .demo-placeholder {
+    @apply mt-5 grid gap-3;
+  }
+  .demo-placeholder i {
+    @apply h-5 rounded bg-canvas;
+  }
+  .demo-enter {
+    @apply mx-auto mt-6 flex w-fit items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm text-white;
+  }
+  .pricing-card {
+    @apply mx-auto grid max-w-xl justify-items-center gap-4 rounded-2xl border border-border bg-surface p-8 text-center;
+  }
+  .pricing-card > span {
+    @apply text-xs text-primary-text;
+  }
+  .pricing-card h3 {
+    @apply m-0 text-2xl;
+  }
+  .pricing-card p,
+  .pricing-card small {
+    @apply m-0 text-xs leading-relaxed text-muted;
+  }
+  .pricing-card a {
+    @apply rounded-lg bg-primary px-5 py-3 text-sm text-white;
+  }
+  .faq-section {
+    @apply grid gap-6 lg:grid-cols-2;
+  }
+  .faq-list article {
+    @apply border-b border-border py-3;
+  }
+  .faq-list button {
+    @apply flex w-full items-center justify-between gap-4 py-3 text-left text-sm font-semibold;
+  }
+  .faq-list svg {
+    @apply shrink-0 text-primary-text;
+  }
+  .faq-list p {
+    @apply mb-3 text-sm leading-relaxed text-muted;
+  }
+  .landing-final-cta {
+    @apply grid justify-items-center gap-4 bg-primary-soft px-5 py-16 text-center;
+  }
+  .landing-final-cta h2 {
+    @apply m-0 max-w-2xl text-3xl md:text-4xl;
+  }
+  .landing-final-cta p {
+    @apply m-0 max-w-xl text-sm leading-relaxed text-muted;
+  }
+  .landing-final-cta a {
+    @apply mt-3 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white;
+  }
+  .marketing-footer {
+    @apply grid gap-8 bg-neutral-950 px-5 py-12 text-neutral-300 sm:grid-cols-2 lg:grid-cols-4 lg:px-10;
+  }
+  .marketing-footer > div {
+    @apply grid content-start gap-3 text-xs;
+  }
+  .marketing-footer p {
+    @apply max-w-sm text-xs leading-relaxed;
+  }
+  .marketing-footer > div > strong {
+    @apply text-sm text-white;
+  }
+  .marketing-footer > small {
+    @apply text-[10px] sm:col-span-2 lg:col-span-4;
+  }
+  .auth-layout {
+    @apply grid min-h-screen lg:grid-cols-2;
+  }
+  .auth-brand-panel {
+    @apply hidden flex-col justify-between gap-8 bg-neutral-950 px-10 py-8 text-white lg:flex xl:px-16;
+  }
+  .auth-brand-copy {
+    @apply max-w-lg;
+  }
+  .auth-brand-copy > span {
+    @apply text-xs font-bold tracking-widest text-orange-300;
+  }
+  .auth-brand-copy h1 {
+    @apply my-5 text-4xl xl:text-5xl;
+  }
+  .auth-brand-copy > p {
+    @apply text-sm leading-relaxed text-neutral-300;
+  }
+  .auth-brand-copy ul {
+    @apply mt-6 grid gap-4 text-sm;
+  }
+  .auth-brand-copy li {
+    @apply flex items-center gap-3;
+  }
+  .auth-brand-copy li svg {
+    @apply shrink-0 text-orange-300;
+  }
+  .auth-dashboard-preview {
+    @apply max-w-md rounded-xl border border-neutral-700 bg-neutral-900 p-5;
+  }
+  .auth-dashboard-preview > div:first-child {
+    @apply grid gap-2;
+  }
+  .auth-dashboard-preview span {
+    @apply text-xs text-neutral-300;
+  }
+  .auth-dashboard-preview strong {
+    @apply text-3xl;
+  }
+  .auth-dashboard-preview small,
+  .auth-copyright {
+    @apply text-[10px] text-neutral-400;
+  }
+  .auth-preview-bars {
+    @apply my-5 flex h-24 items-end gap-3;
+  }
+  .auth-preview-bars i {
+    @apply h-1/2 flex-1 rounded-t bg-orange-400;
+  }
+  .auth-preview-bars i:nth-child(2) {
+    @apply h-2/3;
+  }
+  .auth-preview-bars i:nth-child(3) {
+    @apply h-3/4;
+  }
+  .auth-preview-bars i:nth-child(4) {
+    @apply h-3/5;
+  }
+  .auth-preview-bars i:nth-child(5) {
+    @apply h-4/5;
+  }
+  .auth-preview-bars i:nth-child(6) {
+    @apply h-full;
+  }
+  .auth-preview-row {
+    @apply flex justify-between border-t border-neutral-700 pt-3;
+  }
+  .auth-form-panel {
+    @apply relative m-0 flex w-full max-w-none flex-col items-center justify-center bg-canvas px-5 py-10 lg:px-10;
+  }
+  .auth-mobile-logo {
+    @apply mb-8 lg:hidden;
+  }
+  .auth-theme-toggle {
+    @apply absolute right-5 top-5;
+  }
+  .auth-card {
+    @apply w-full max-w-md;
+  }
+  .auth-heading > span {
+    @apply text-[10px] font-bold tracking-widest text-primary-text;
+  }
+  .auth-heading h2 {
+    @apply mb-3 mt-3 text-3xl;
+  }
+  .auth-heading p {
+    @apply mb-5 text-sm text-muted;
+  }
+}
+.public-field {
+  @apply mb-4 grid gap-2 text-sm;
+}
+.public-field > span {
+  @apply font-medium;
+}
+.public-field input,
+.public-field select,
+.public-field textarea {
+  @apply w-full rounded-lg border border-border bg-surface px-3 py-3 text-sm text-ink;
+}
+.public-field.has-error input {
+  @apply border-danger;
+}
+.public-field small {
+  @apply text-xs text-muted;
+}
+.public-field .field-error,
+.standalone-error,
+.onboarding-error {
+  @apply block text-xs text-danger;
+}
+.password-control {
+  @apply flex items-center overflow-hidden rounded-lg border border-border bg-surface;
+}
+.password-control input {
+  @apply min-w-0 flex-1 border-0 bg-transparent;
+}
+.password-control button {
+  @apply mr-1 grid size-9 shrink-0 place-items-center rounded-md p-0 text-muted;
+}
+.password-strength {
+  @apply mb-4 grid gap-2;
+}
+.password-strength > span {
+  @apply flex gap-2;
+}
+.password-strength i {
+  @apply h-1 flex-1 rounded-full bg-border;
+}
+.password-strength i.active {
+  @apply bg-success;
+}
+.password-strength small,
+.password-requirements {
+  @apply text-[10px] text-muted;
+}
+.auth-checkbox {
+  @apply mb-2 flex items-start gap-2 text-xs text-muted;
+}
+.auth-checkbox input {
+  @apply mt-0.5 accent-primary;
+}
+.auth-submit {
+  @apply mt-3 w-full;
+}
+.social-auth {
+  @apply mt-4 w-full rounded-lg border border-border bg-surface p-3 text-xs text-muted;
+}
+.auth-switch {
+  @apply mt-5 text-center text-xs text-muted;
+}
+.auth-switch a,
+.forgot-row a {
+  @apply font-semibold text-primary-text;
+}
+.forgot-row {
+  @apply mb-2 flex justify-between text-xs;
+}
+.focused-public-page {
+  @apply flex min-h-screen flex-col items-center gap-10 bg-canvas px-5 py-10;
+}
+.focused-card {
+  @apply w-full max-w-md rounded-2xl border border-border bg-surface p-6 text-center md:p-8;
+}
+.focused-card h1 {
+  @apply mb-4 mt-5 text-2xl;
+}
+.focused-card > p {
+  @apply text-sm leading-relaxed text-muted;
+}
+.focused-card form {
+  @apply mt-5 text-left;
+}
+.focused-icon {
+  @apply mx-auto grid size-16 place-items-center rounded-full bg-primary-soft text-primary-text;
+}
+.focused-link {
+  @apply mx-auto mt-4 flex w-fit items-center justify-center gap-2 text-xs font-semibold text-primary-text;
+}
+.public-status {
+  @apply my-4 flex items-start gap-3 rounded-lg border border-border bg-canvas p-3 text-left;
+}
+.public-status > svg {
+  @apply shrink-0;
+}
+.public-status strong {
+  @apply text-xs;
+}
+.public-status p {
+  @apply mb-0 mt-1 text-xs leading-relaxed text-muted;
+}
+.public-status.success > svg {
+  @apply text-success;
+}
+.public-status.warning > svg {
+  @apply text-warning;
+}
+.public-status.error > svg {
+  @apply text-danger;
+}
+.public-status.info > svg {
+  @apply text-primary-text;
+}
+.verification-code {
+  @apply text-center font-mono text-xl tracking-[0.5em];
+}
+.invite-label {
+  @apply mt-5 block text-xs font-bold tracking-widest text-primary-text;
+}
+.invite-details {
+  @apply my-5 grid gap-4 rounded-xl border border-border p-4 text-xs;
+}
+.invite-details span {
+  @apply grid gap-2;
+}
+.invite-security {
+  @apply mt-4 block text-[10px] leading-relaxed text-muted;
+}
+.onboarding-page {
+  @apply min-h-screen bg-canvas;
+}
+.onboarding-header {
+  @apply flex flex-wrap items-center gap-4 border-b border-border bg-surface px-5 py-4 md:px-10;
+}
+.onboarding-header > span {
+  @apply ml-auto hidden text-xs text-muted md:block;
+}
+.onboarding-header > a:last-child {
+  @apply ml-auto text-xs font-semibold text-primary-text md:ml-0;
+}
+.onboarding-progress {
+  @apply mx-auto flex max-w-3xl items-center justify-between gap-2 px-5 py-8;
+}
+.onboarding-progress > div {
+  @apply flex flex-col items-center gap-2 text-xs text-muted md:flex-row;
+}
+.onboarding-progress i {
+  @apply grid size-8 place-items-center rounded-full border border-border bg-surface font-semibold not-italic;
+}
+.onboarding-progress > div.active {
+  @apply text-primary-text;
+}
+.onboarding-progress > div.active i {
+  @apply border-primary bg-primary text-white;
+}
+.onboarding-main {
+  @apply mx-auto w-full max-w-5xl px-5 py-5;
+}
+.onboarding-copy {
+  @apply mb-7;
+}
+.onboarding-copy > span {
+  @apply text-[10px] font-bold tracking-widest text-primary-text;
+}
+.onboarding-copy h1 {
+  @apply mb-3 mt-3 text-3xl;
+}
+.onboarding-copy p {
+  @apply text-sm text-muted;
+}
+.onboarding-card {
+  @apply rounded-2xl border border-border bg-surface p-5 md:p-8;
+}
+.onboarding-form-grid {
+  @apply grid gap-2 md:grid-cols-2;
+}
+.onboarding-group {
+  @apply my-6 border-0 p-0;
+}
+.onboarding-group legend {
+  @apply mb-2 text-base font-semibold;
+}
+.onboarding-group p {
+  @apply text-xs text-muted;
+}
+.category-selector {
+  @apply grid gap-3 sm:grid-cols-2;
+}
+.category-selector button {
+  @apply flex items-center gap-3 rounded-xl border border-border p-4 text-left text-xs;
+}
+.category-selector button.active {
+  @apply border-primary bg-primary-soft text-primary-text;
+}
+.category-selector svg {
+  @apply shrink-0;
+}
+.channel-selector {
+  @apply flex flex-wrap gap-2;
+}
+.channel-selector button {
+  @apply flex items-center gap-2 rounded-full border border-border px-3 py-2 text-xs;
+}
+.channel-selector button.active {
+  @apply border-primary bg-primary-soft text-primary-text;
+}
+.onboarding-error {
+  @apply mt-3;
+}
+.onboarding-footer {
+  @apply mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5;
+}
+.onboarding-footer.full {
+  @apply col-span-full;
+}
+.onboarding-footer > div {
+  @apply flex flex-wrap items-center gap-3;
+}
+.onboarding-back {
+  @apply inline-flex items-center gap-2 text-xs font-semibold text-primary-text;
+}
+.onboarding-skip {
+  @apply text-xs text-muted;
+}
+.store-setup-layout {
+  @apply grid gap-6 md:grid-cols-2;
+}
+.store-setup-form {
+  @apply min-w-0;
+}
+.file-upload {
+  @apply relative mb-5 flex items-center gap-3 overflow-hidden rounded-xl border border-dashed border-border bg-canvas p-5 text-left;
+}
+.file-upload input {
+  @apply absolute inset-0 cursor-pointer opacity-0;
+}
+.file-upload > svg {
+  @apply shrink-0 text-primary-text;
+}
+.file-upload > span {
+  @apply grid min-w-0 gap-2;
+}
+.file-upload strong {
+  @apply truncate text-xs;
+}
+.file-upload small {
+  @apply text-[10px] leading-relaxed text-muted;
+}
+.file-upload.compact {
+  @apply p-3;
+}
+.slug-control {
+  @apply flex flex-wrap items-center gap-2 rounded-lg border border-border bg-canvas px-3 text-xs;
+}
+.slug-control > span {
+  @apply py-2 text-muted;
+}
+.slug-control input {
+  @apply min-w-0 flex-1 border-0 bg-transparent px-0;
+}
+.brand-colour-picker {
+  @apply mb-5 flex gap-3;
+}
+.brand-colour-picker legend {
+  @apply mb-3 text-sm;
+}
+.brand-colour-picker button {
+  @apply grid size-9 place-items-center rounded-full text-white;
+}
+.onboarding-store-preview {
+  @apply min-w-0 rounded-xl bg-canvas p-4;
+}
+.onboarding-store-preview > span {
+  @apply mb-4 block text-[9px] font-semibold tracking-widest text-muted;
+}
+.onboarding-store-preview > div {
+  @apply overflow-hidden rounded-lg border border-border bg-surface;
+}
+.onboarding-store-preview header {
+  @apply flex items-center gap-2 p-3 text-xs;
+}
+.onboarding-store-preview header i {
+  @apply grid size-8 shrink-0 place-items-center rounded-lg not-italic text-white;
+}
+.onboarding-store-preview header strong {
+  @apply min-w-0 flex-1 break-words;
+}
+.onboarding-store-preview header b {
+  @apply flex items-center gap-1 text-[10px];
+}
+.onboarding-store-preview main {
+  @apply m-0 max-w-none p-5;
+}
+.onboarding-store-preview main small {
+  @apply text-[8px] font-semibold text-primary-text;
+}
+.onboarding-store-preview main h2 {
+  @apply my-3 text-lg;
+}
+.onboarding-store-preview main button {
+  @apply rounded-lg px-3 py-2 text-[10px] text-white;
+}
+.onboarding-store-preview footer {
+  @apply grid grid-cols-3 gap-2 p-3;
+}
+.onboarding-store-preview footer > span {
+  @apply col-span-3 text-[10px];
+}
+.onboarding-store-preview footer i {
+  @apply aspect-square rounded-lg bg-primary-soft;
+}
+.onboarding-store-preview > small {
+  @apply mt-3 block break-all text-[10px] text-muted;
+}
+.product-setup-layout {
+  @apply grid gap-6 md:grid-cols-[240px_minmax(0,1fr)];
+}
+.product-setup-layout > .file-upload {
+  @apply min-h-64 flex-col justify-center self-start text-center;
+}
+.product-setup-form {
+  @apply grid gap-2 sm:grid-cols-2;
+}
+.product-setup-form > label:first-child,
+.product-setup-form > label:last-child {
+  @apply sm:col-span-2;
+}
+.onboarding-review {
+  @apply grid gap-6 md:grid-cols-[minmax(0,1fr)_280px];
+}
+.setup-summary article {
+  @apply flex items-center gap-3 border-b border-border py-4;
+}
+.setup-summary article > svg {
+  @apply size-5 shrink-0 text-warning;
+}
+.setup-summary article.complete > svg {
+  @apply text-success;
+}
+.setup-summary article > span {
+  @apply min-w-0 flex-1;
+}
+.setup-summary strong {
+  @apply text-sm;
+}
+.setup-summary small {
+  @apply mt-2 block break-words text-xs text-muted;
+}
+.setup-summary button,
+.setup-summary em {
+  @apply text-xs not-italic text-primary-text;
+}
+.review-business-card {
+  @apply grid content-start justify-items-center gap-3 rounded-xl border border-border bg-canvas p-5 text-center;
+}
+.review-business-card > span {
+  @apply text-[10px] tracking-widest text-muted;
+}
+.review-business-card > i {
+  @apply grid size-14 place-items-center rounded-xl not-italic text-white;
+}
+.review-business-card h2 {
+  @apply mb-0 text-xl;
+}
+.review-business-card p,
+.review-business-card strong {
+  @apply mb-0 text-xs text-muted;
+}
+.onboarding-complete-page {
+  @apply flex min-h-screen flex-col items-center gap-8 bg-canvas px-5 py-8;
+}
+.onboarding-complete-page main {
+  @apply m-0 grid w-full max-w-xl justify-items-center gap-4 rounded-2xl border border-border bg-surface p-6 text-center md:p-10;
+}
+.onboarding-complete-page h1 {
+  @apply m-0 text-3xl;
+}
+.onboarding-complete-page h2 {
+  @apply m-0 text-base;
+}
+.onboarding-complete-page main > p {
+  @apply m-0 text-[10px] tracking-widest text-primary-text;
+}
+.complete-checklist {
+  @apply my-4 grid w-full gap-3;
+}
+.complete-checklist > span {
+  @apply flex items-center gap-2 text-xs;
+}
+.complete-checklist small {
+  @apply ml-auto text-[10px] text-muted;
+}
+.complete-checklist svg {
+  @apply shrink-0 text-muted;
+}
+.complete-checklist .done svg {
+  @apply text-success;
+}
+.complete-actions {
+  @apply grid w-full gap-3;
+}
+.complete-actions a {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-border px-4 py-3 text-xs;
+}
+.complete-actions a:first-child {
+  @apply border-primary bg-primary text-white;
+}
+.onboarding-complete-page main > small {
+  @apply text-[10px] leading-relaxed text-muted;
+}
+
+@layer components {
+  .store-app[data-brand="emerald"] {
+    --color-primary: var(--color-emerald-600);
+    --color-primary-text: var(--color-emerald-600);
+    --color-primary-soft: color-mix(
+      in oklab,
+      var(--color-emerald-600) 12%,
+      var(--color-surface)
+    );
+  }
+  .store-app[data-brand="violet"] {
+    --color-primary: var(--color-violet-600);
+    --color-primary-text: var(--color-violet-600);
+    --color-primary-soft: color-mix(
+      in oklab,
+      var(--color-violet-600) 12%,
+      var(--color-surface)
+    );
+  }
+  .store-app[data-brand="neutral"] {
+    --color-primary: var(--color-neutral-800);
+    --color-primary-text: var(--color-ink);
+    --color-primary-soft: var(--color-canvas);
+  }
+  [data-theme="dark"] .store-app[data-brand="emerald"] {
+    --color-primary-text: var(--color-emerald-300);
+  }
+  [data-theme="dark"] .store-app[data-brand="violet"] {
+    --color-primary-text: var(--color-violet-300);
+  }
+}

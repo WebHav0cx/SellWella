@@ -1,4 +1,6 @@
 "use client";
+import { useOnboarding } from "@/features/onboarding/store";
+import { storeSchema } from "@/features/onboarding/schema";
 
 import { useRouter } from "next/navigation";
 
@@ -9,6 +11,11 @@ import { ProductImage } from "@/components/ui/product-image";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
 
 export function StorefrontManagementPage() {
+  const setup = useOnboarding((state) => state.data);
+  const slug = storeSchema.safeParse(setup.store).success
+    ? setup.store.slug
+    : "aminas-fashion";
+  const storeUrl = `/store/${slug}`;
   const products = useMerchantStore((state) => state.products);
   const orders = useMerchantStore((state) => state.orders);
 
@@ -31,13 +38,7 @@ export function StorefrontManagementPage() {
         </div>
         <button
           className="create-button"
-          onClick={() =>
-            window.open(
-              "/store/aminas-fashion",
-              "_blank",
-              "noopener,noreferrer",
-            )
-          }
+          onClick={() => window.open(storeUrl, "_blank", "noopener,noreferrer")}
         >
           Open public store
         </button>
@@ -80,14 +81,12 @@ export function StorefrontManagementPage() {
       <section className="store-management-grid">
         <div className="store-preview-card">
           <div className="preview-browser">
-            <span>sellwella.demo/store/aminas-fashion</span>
+            <span>sellwella.demo{storeUrl}</span>
           </div>
           <div className="preview-hero">
-            <span>AMINA&apos;S FASHION</span>
+            <span>{setup.business.name.toUpperCase()}</span>
             <h2>Everyday pieces, beautifully chosen.</h2>
-            <button onClick={() => navigate("/store/aminas-fashion")}>
-              Preview store
-            </button>
+            <button onClick={() => navigate(storeUrl)}>Preview store</button>
           </div>
           <div className="preview-products">
             {published.slice(0, 3).map((product) => (
@@ -117,11 +116,11 @@ export function StorefrontManagementPage() {
           ))}
           <div className="store-url-card">
             <strong>Public store URL</strong>
-            <p>sellwella.demo/store/aminas-fashion</p>
+            <p>sellwella.demo{storeUrl}</p>
             <button
               onClick={() =>
                 copyToClipboard(
-                  `${window.location.origin}/store/aminas-fashion`,
+                  `${window.location.origin}${storeUrl}`,
                   "Store URL",
                 )
               }

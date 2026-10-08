@@ -1,0 +1,4 @@
+import { OnboardingPage } from "@/features/onboarding/onboarding";
+export default function Page() {
+  return <OnboardingPage />;
+}

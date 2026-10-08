@@ -3,7 +3,7 @@ export const navGroups = [
   {
     label: "Workspace",
     items: [
-      { icon: "home" as IconName, label: "Overview", href: "/" },
+      { icon: "home" as IconName, label: "Overview", href: "/app" },
       { icon: "bell" as IconName, label: "Activity Centre", href: "/activity" },
     ],
   },

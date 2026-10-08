@@ -10,6 +10,8 @@ export type Product = {
   threshold: number;
   published: boolean;
   image: string;
+  description?: string;
+  imageName?: string;
 };
 
 export const initialProducts: Product[] = [

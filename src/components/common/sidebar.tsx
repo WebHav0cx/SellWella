@@ -4,6 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Icon } from "@/components/ui/icon";
+import { useOnboarding } from "@/features/onboarding/store";
+import { useDemoSession } from "@/features/auth/session-provider";
+import { nameInitials } from "@/lib/name-initials";
 import { navGroups } from "@/features/merchant/navigation";
 export function Sidebar({
   sidebarOpen,
@@ -13,6 +16,10 @@ export function Sidebar({
   onClose: () => void;
 }) {
   const pathname = usePathname();
+  const workspaceName =
+    useOnboarding((state) => state.data.business.name) || "Amina’s Fashion";
+  const owner =
+    useDemoSession((state) => state.session?.name) || "Amina Okafor";
   const active =
     navGroups
       .flatMap((group) => group.items)
@@ -53,9 +60,11 @@ export function Sidebar({
         </div>
 
         <button className="workspace-card">
-          <span className="workspace-avatar">AF</span>
+          <span className="workspace-avatar">
+            {nameInitials(workspaceName)}
+          </span>
           <span className="workspace-copy">
-            <strong>Amina&apos;s Fashion</strong>
+            <strong>{workspaceName}</strong>
             <small>Business workspace</small>
           </span>
           <Icon name="chevron" size={16} />
@@ -120,9 +129,9 @@ export function Sidebar({
             </button>
           </div>
           <div className="user-card">
-            <span className="user-avatar">AO</span>
+            <span className="user-avatar">{nameInitials(owner)}</span>
             <span>
-              <strong>Amina Okafor</strong>
+              <strong>{owner}</strong>
               <small>Business owner</small>
             </span>
             <Icon name="more" size={18} />

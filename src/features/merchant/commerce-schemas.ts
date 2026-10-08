@@ -56,6 +56,8 @@ export const savedCommerceSchema = z.object({
         threshold: z.number().int().nonnegative(),
         published: z.boolean(),
         image: z.string(),
+        description: z.string().optional(),
+        imageName: z.string().optional(),
       })
       .refine((p) => p.reserved <= p.onHand),
   ),

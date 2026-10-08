@@ -8,6 +8,11 @@ export default async function StoreLayout({
   params: Promise<{ merchantSlug: string }>;
 }) {
   const { merchantSlug } = await params;
-  if (merchantSlug !== "aminas-fashion") notFound();
+  if (
+    !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(merchantSlug) ||
+    merchantSlug.length < 3 ||
+    merchantSlug.length > 40
+  )
+    notFound();
   return <StorefrontShell slug={merchantSlug}>{children}</StorefrontShell>;
 }
