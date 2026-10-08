@@ -1,4 +1,4 @@
-import { PlannedModule } from "@/features/merchant/planned-module";
+import { ActivityCentrePage } from "@/features/merchant/activity-centre";
 export default function Page() {
-  return <PlannedModule name="Activity Centre" />;
+  return <ActivityCentrePage />;
 }

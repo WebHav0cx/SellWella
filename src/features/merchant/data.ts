@@ -184,6 +184,7 @@ export type OrderItem = {
   name: string;
   quantity: number;
   unitPrice: number;
+  variant?: string;
 };
 
 export type BusinessOrder = {
@@ -199,9 +200,18 @@ export type BusinessOrder = {
   orderStatus:
     "Draft" | "Awaiting Payment" | "Processing" | "Completed" | "Cancelled";
   paymentStatus: "Pending" | "Paid" | "Refunded";
-  fulfilmentStatus: "Unfulfilled" | "Processing" | "Ready" | "Delivered";
+  fulfilmentStatus:
+    | "Unfulfilled"
+    | "Processing"
+    | "Ready"
+    | "Ready to Pack"
+    | "Packed"
+    | "Ready for Dispatch"
+    | "Delivered";
   createdAt: string;
   paymentLink?: string;
+  paymentMethod?: string;
+  deliveryMethod?: "Home delivery" | "Store pickup";
 };
 
 export const initialBusinessOrders: BusinessOrder[] = [
@@ -219,7 +229,7 @@ export const initialBusinessOrders: BusinessOrder[] = [
     total: 31000,
     orderStatus: "Processing",
     paymentStatus: "Paid",
-    fulfilmentStatus: "Processing",
+    fulfilmentStatus: "Ready to Pack",
     createdAt: "8 Oct 2026, 10:24",
   },
   {

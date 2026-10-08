@@ -1,4 +1,4 @@
-import { PlannedModule } from "@/features/merchant/planned-module";
+import { PointOfSalePage } from "@/features/merchant/point-of-sale";
 export default function Page() {
-  return <PlannedModule name="Point of Sale" />;
+  return <PointOfSalePage />;
 }

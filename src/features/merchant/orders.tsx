@@ -12,21 +12,29 @@ import { ProductImage } from "@/components/ui/product-image";
 import { formatMoney } from "@/lib/format-money";
 import { useMerchantStore } from "@/features/merchant/store";
 import { type Product, type BusinessOrder } from "@/features/merchant/data";
-export function OrdersPage({ initialOrderId }: { initialOrderId?: number }) {
+export function OrdersPage({
+  initialOrderId,
+  initialCreating = false,
+}: {
+  initialOrderId?: number;
+  initialCreating?: boolean;
+}) {
   const products = useMerchantStore((state) => state.products);
-  const setProducts = useMerchantStore((state) => state.setProducts);
   const customers = useMerchantStore((state) => state.customers);
-  const setCustomers = useMerchantStore((state) => state.setCustomers);
   const orders = useMerchantStore((state) => state.orders);
   const setOrders = useMerchantStore((state) => state.setOrders);
+  const createCommerceOrder = useMerchantStore((state) => state.createOrder);
+  const payOrder = useMerchantStore((state) => state.confirmDemoPayment);
+  const cancelCommerceOrder = useMerchantStore((state) => state.cancelOrder);
 
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("All orders");
   const [payment, setPayment] = useState("All payments");
-  const [selected, setSelected] = useState<BusinessOrder | null>(
-    () => orders.find((order) => order.id === initialOrderId) ?? null,
+  const [selectedId, setSelectedId] = useState<number | null>(
+    initialOrderId ?? null,
   );
-  const [creating, setCreating] = useState(false);
+  const selected = orders.find((order) => order.id === selectedId) ?? null;
+  const [creating, setCreating] = useState(initialCreating);
   const [quantities, setQuantities] = useState<Record<number, number>>({});
   const {
     register,
@@ -90,149 +98,45 @@ export function OrdersPage({ initialOrderId }: { initialOrderId?: number }) {
   };
 
   const createOrder = (mode: "draft" | "order" | "link", values: OrderForm) => {
-    const customer = customers.find((item) => item.id === values.customerId);
-    if (!customer || draftItems.length === 0) {
-      setError("Select a customer and add at least one product.");
-      return;
-    }
-    const unavailable = draftItems.find((item) => {
-      const product = products.find(
-        (candidate) => candidate.id === item.productId,
-      );
-      return !product || product.onHand - product.reserved < item.quantity;
-    });
-    if (unavailable) {
-      setError(`${unavailable.name} no longer has enough available stock.`);
-      return;
-    }
-    const id = Math.max(128, ...orders.map((order) => order.id)) + 1;
-    const number = `SW-${String(id).padStart(5, "0")}`;
-    const shouldReserve = mode !== "draft";
-    const nextOrder: BusinessOrder = {
-      id,
-      number,
-      customerId: customer.id,
-      customerName: customer.name,
+    const result = createCommerceOrder({
+      customerId: values.customerId,
       source: values.source,
       items: draftItems,
-      subtotal,
       deliveryFee: Number(values.deliveryFee || 0),
-      total: subtotal + Number(values.deliveryFee || 0),
-      orderStatus: mode === "draft" ? "Draft" : "Awaiting Payment",
-      paymentStatus: "Pending",
-      fulfilmentStatus: "Unfulfilled",
-      createdAt: "Just now",
-      paymentLink:
-        mode === "link" ? `https://sellwella.demo/pay/${number}` : undefined,
-    };
-    setOrders((current) => [nextOrder, ...current]);
-    if (shouldReserve) {
-      setProducts((current) =>
-        current.map((product) => {
-          const item = draftItems.find(
-            (candidate) => candidate.productId === product.id,
-          );
-          return item
-            ? { ...product, reserved: product.reserved + item.quantity }
-            : product;
-        }),
-      );
+      mode,
+    });
+    if (!result.ok) {
+      setError(result.error);
+      return;
     }
-    setNotice(
-      mode === "link"
-        ? `${number} created with a demo payment link. No real payment request was sent.`
-        : `${number} created successfully.`,
+    toast.success(
+      `${result.order.number} created successfully${mode === "link" ? " with a demo payment link" : ""}.`,
     );
     resetBuilder();
   };
-
   const confirmDemoPayment = (order: BusinessOrder) => {
-    if (order.paymentStatus === "Paid") return;
-    setOrders((current) =>
-      current.map((item) =>
-        item.id === order.id
-          ? {
-              ...item,
-              paymentStatus: "Paid",
-              orderStatus: "Processing",
-            }
-          : item,
-      ),
-    );
-    setProducts((current) =>
-      current.map((product) => {
-        const item = order.items.find(
-          (candidate) => candidate.productId === product.id,
-        );
-        return item
-          ? {
-              ...product,
-              onHand: product.onHand - item.quantity,
-              reserved: Math.max(0, product.reserved - item.quantity),
-            }
-          : product;
-      }),
-    );
-    setCustomers((current) =>
-      current.map((customer) =>
-        customer.id === order.customerId
-          ? {
-              ...customer,
-              orders: customer.orders + 1,
-              spend: customer.spend + order.total,
-              lastActivity: "Just now",
-              segment: customer.orders >= 4 ? "VIP" : "Returning",
-            }
-          : customer,
-      ),
-    );
-    setSelected((current) =>
-      current
-        ? { ...current, paymentStatus: "Paid", orderStatus: "Processing" }
-        : current,
-    );
-    setNotice(
-      `${order.number} marked paid in demo mode. Stock and customer history were updated locally.`,
-    );
-  };
-
-  const cancelOrder = (order: BusinessOrder) => {
-    if (order.paymentStatus === "Paid") {
-      setNotice(
-        "Paid orders require a refund workflow and cannot be silently cancelled.",
-      );
+    const result = payOrder(order.id);
+    if (!result.ok) {
+      toast.error(result.error);
       return;
     }
-    if (order.orderStatus !== "Draft") {
-      setProducts((current) =>
-        current.map((product) => {
-          const item = order.items.find(
-            (candidate) => candidate.productId === product.id,
-          );
-          return item
-            ? {
-                ...product,
-                reserved: Math.max(0, product.reserved - item.quantity),
-              }
-            : product;
-        }),
-      );
+    setSelectedId(result.order.id);
+    toast.success(`${order.number} marked paid in demo mode.`);
+  };
+  const cancelOrder = (order: BusinessOrder) => {
+    const result = cancelCommerceOrder(order.id);
+    if (!result.ok) {
+      toast.error(result.error);
+      return;
     }
-    setOrders((current) =>
-      current.map((item) =>
-        item.id === order.id ? { ...item, orderStatus: "Cancelled" } : item,
-      ),
-    );
-    setSelected((current) =>
-      current ? { ...current, orderStatus: "Cancelled" } : current,
-    );
-    setNotice(`${order.number} cancelled and its stock reservation released.`);
+    setSelectedId(result.order.id);
+    toast.info(`${order.number} cancelled and its reservation released.`);
   };
 
   if (selected) {
     return (
       <div className="module-page">
-        <button className="back-button" onClick={() => setSelected(null)}>
+        <button className="back-button" onClick={() => setSelectedId(null)}>
           <Icon name="back" size={16} /> Back to orders
         </button>
         <section className="order-detail-head">
@@ -381,7 +285,6 @@ export function OrdersPage({ initialOrderId }: { initialOrderId?: number }) {
                           : item,
                       ),
                     );
-                    setSelected({ ...selected, paymentLink: link });
                     setNotice(
                       "Demo payment link generated. It cannot collect a real payment.",
                     );
@@ -518,7 +421,7 @@ export function OrdersPage({ initialOrderId }: { initialOrderId?: number }) {
             </div>
             {filtered.map((order) => (
               <div className="orders-list-row" key={order.id}>
-                <button onClick={() => setSelected(order)}>
+                <button onClick={() => setSelectedId(order.id)}>
                   {order.number}
                 </button>
                 <strong>{order.customerName}</strong>
@@ -541,7 +444,7 @@ export function OrdersPage({ initialOrderId }: { initialOrderId?: number }) {
                 <span>{order.createdAt}</span>
                 <button
                   className="row-action"
-                  onClick={() => setSelected(order)}
+                  onClick={() => setSelectedId(order.id)}
                 >
                   View
                 </button>
@@ -728,7 +631,7 @@ export function OrdersPage({ initialOrderId }: { initialOrderId?: number }) {
                 disabled={isSubmitting}
                 onClick={handleSubmit((values) => createOrder("link", values))}
               >
-                Create & generate demo link
+                Create & generate link
               </button>
               <button
                 className="secondary-button full-button"

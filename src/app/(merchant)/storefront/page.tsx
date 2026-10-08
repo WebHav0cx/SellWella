@@ -1,4 +1,4 @@
-import { PlannedModule } from "@/features/merchant/planned-module";
+import { StorefrontManagementPage } from "@/features/merchant/storefront-management";
 export default function Page() {
-  return <PlannedModule name="Storefront" />;
+  return <StorefrontManagementPage />;
 }

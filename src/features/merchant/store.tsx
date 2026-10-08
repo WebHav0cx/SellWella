@@ -1,64 +1,64 @@
 "use client";
-
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
-  type SetStateAction,
 } from "react";
-import { createStore, useStore } from "zustand";
+import { useStore } from "zustand";
 import {
-  initialProducts,
-  initialCustomers,
-  initialBusinessOrders,
-  type Product,
-  type Customer,
-  type BusinessOrder,
-} from "./data";
-
-type MerchantState = {
-  products: Product[];
-  customers: Customer[];
-  orders: BusinessOrder[];
-  setProducts: (update: SetStateAction<Product[]>) => void;
-  setCustomers: (update: SetStateAction<Customer[]>) => void;
-  setOrders: (update: SetStateAction<BusinessOrder[]>) => void;
-};
-
-function createMerchantStore() {
-  return createStore<MerchantState>()((set) => ({
-    products: initialProducts,
-    customers: initialCustomers,
-    orders: initialBusinessOrders,
-    setProducts: (update) =>
-      set((state) => ({
-        products:
-          typeof update === "function" ? update(state.products) : update,
-      })),
-    setCustomers: (update) =>
-      set((state) => ({
-        customers:
-          typeof update === "function" ? update(state.customers) : update,
-      })),
-    setOrders: (update) =>
-      set((state) => ({
-        orders: typeof update === "function" ? update(state.orders) : update,
-      })),
-  }));
-}
-
+  createCommerceStore,
+  COMMERCE_STORAGE_KEY,
+  type MerchantState,
+} from "./commerce-store";
+import { savedCommerceSchema } from "./commerce-schemas";
 const StoreContext = createContext<ReturnType<
-  typeof createMerchantStore
+  typeof createCommerceStore
 > | null>(null);
-
 export function MerchantStoreProvider({ children }: { children: ReactNode }) {
-  const [store] = useState(createMerchantStore);
+  const [store] = useState(createCommerceStore);
+  useEffect(() => {
+    const restore = (stored: string | null) => {
+      if (!stored) return;
+      try {
+        const result = savedCommerceSchema.safeParse(JSON.parse(stored));
+        if (result.success) store.setState(result.data);
+      } catch {
+        /* Ignore malformed demo data. */
+      }
+    };
+    try {
+      restore(localStorage.getItem(COMMERCE_STORAGE_KEY));
+    } catch {
+      /* Storage may be unavailable. */
+    }
+    store.setState({ hydrated: true });
+    const unsubscribe = store.subscribe(
+      ({ products, customers, orders, activities }) => {
+        try {
+          localStorage.setItem(
+            COMMERCE_STORAGE_KEY,
+            JSON.stringify({ products, customers, orders, activities }),
+          );
+        } catch {
+          /* In-memory demo actions remain available. */
+        }
+      },
+    );
+    const sync = (event: StorageEvent) => {
+      if (event.key === COMMERCE_STORAGE_KEY) restore(event.newValue);
+    };
+    window.addEventListener("storage", sync);
+    return () => {
+      unsubscribe();
+      window.removeEventListener("storage", sync);
+    };
+  }, [store]);
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
   );
 }
-
 export function useMerchantStore<T>(selector: (state: MerchantState) => T): T {
   const store = useContext(StoreContext);
   if (!store) throw new Error("MerchantStoreProvider is required.");

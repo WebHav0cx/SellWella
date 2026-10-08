@@ -1,4 +1,4 @@
-import { PlannedModule } from "@/features/merchant/planned-module";
+import { InboxPage } from "@/features/merchant/inbox";
 export default function Page() {
-  return <PlannedModule name="Unified Inbox" />;
+  return <InboxPage />;
 }

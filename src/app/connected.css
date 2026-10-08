@@ -1,0 +1,697 @@
+@layer components {
+  .inbox-shell {
+    @apply grid gap-4 lg:grid-cols-[250px_minmax(0,1fr)] xl:grid-cols-[250px_minmax(0,1fr)_250px];
+  }
+  .conversation-panel,
+  .message-panel,
+  .customer-context,
+  .pos-cart,
+  .activity-feed,
+  .store-preview-card,
+  .store-management-actions {
+    @apply min-w-0 overflow-hidden rounded-xl border border-border bg-surface;
+  }
+  .inbox-panel-head,
+  .message-head,
+  .pos-cart-head,
+  .pos-heading {
+    @apply flex items-center justify-between gap-3 border-b border-border p-4;
+  }
+  .inbox-panel-head h1,
+  .pos-heading h1 {
+    @apply mb-1 text-xl;
+  }
+  .inbox-panel-head span,
+  .message-head small,
+  .pos-heading p,
+  .pos-cart-head span {
+    @apply block text-xs text-muted;
+  }
+  .inbox-shell button,
+  .pos-page button,
+  .activity-layout button,
+  .fulfilment-board button,
+  .store-management-grid button {
+    @apply cursor-pointer;
+  }
+  .inbox-panel-head button,
+  .message-head button,
+  .message-composer button,
+  .context-block button,
+  .pos-heading button,
+  .fulfilment-board button,
+  .store-url-card button {
+    @apply rounded-lg border border-border px-3 py-2 text-xs font-semibold;
+  }
+  .inbox-search {
+    @apply mx-4 my-3 flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-muted;
+  }
+  .inbox-search input {
+    @apply min-w-0 w-full bg-transparent text-xs text-ink outline-none;
+  }
+  .inbox-filters,
+  .pos-categories {
+    @apply flex flex-wrap gap-1 px-4 py-2;
+  }
+  .inbox-filters button,
+  .pos-categories button {
+    @apply rounded-lg px-2 py-2 text-xs text-muted;
+  }
+  .inbox-filters button.active,
+  .pos-categories button.active {
+    @apply bg-primary-soft text-primary-text;
+  }
+  .conversation-list {
+    @apply max-h-[580px] overflow-y-auto;
+  }
+  .conversation-list > button {
+    @apply flex w-full items-start gap-2 border-t border-border p-4 text-left;
+  }
+  .conversation-list > button.active {
+    @apply bg-primary-soft;
+  }
+  .conversation-list i,
+  .message-avatar,
+  .context-customer i {
+    @apply grid size-9 shrink-0 place-items-center rounded-full bg-primary-soft text-xs font-bold not-italic text-primary-text;
+  }
+  .conversation-list > button > span {
+    @apply min-w-0 flex-1;
+  }
+  .conversation-list strong {
+    @apply flex justify-between gap-2 text-xs;
+  }
+  .conversation-list b,
+  .conversation-list p {
+    @apply mt-1 block text-[11px] font-normal text-muted;
+  }
+  .conversation-list small,
+  .message-bubble small {
+    @apply text-[10px] font-normal text-muted;
+  }
+  .conversation-list em {
+    @apply rounded-full bg-primary px-2 py-1 text-[10px] not-italic text-white;
+  }
+  .message-panel {
+    @apply flex flex-col;
+  }
+  .message-head > div {
+    @apply flex-1 text-sm;
+  }
+  .message-thread {
+    @apply flex min-h-80 flex-1 flex-col gap-3 overflow-y-auto p-4;
+  }
+  .thread-date {
+    @apply text-center text-xs text-muted;
+  }
+  .message-bubble {
+    @apply max-w-[85%] self-start rounded-xl bg-canvas p-3 text-sm;
+  }
+  .message-bubble p {
+    @apply mb-2;
+  }
+  .message-bubble.merchant {
+    @apply self-end bg-primary-soft;
+  }
+  .ai-suggestion {
+    @apply mt-3 rounded-xl border border-border p-3 text-xs;
+  }
+  .ai-suggestion span {
+    @apply text-primary-text;
+  }
+  .ai-suggestion p {
+    @apply my-2 text-muted;
+  }
+  .ai-suggestion button {
+    @apply font-semibold text-primary-text;
+  }
+  .message-composer {
+    @apply grid gap-3 border-t border-border p-4;
+  }
+  .message-composer > div {
+    @apply flex flex-wrap gap-2;
+  }
+  .message-composer textarea {
+    @apply min-h-20 w-full rounded-lg border border-border bg-canvas p-3 text-sm text-ink;
+  }
+  .message-composer > button,
+  .context-primary {
+    @apply bg-primary text-white;
+  }
+  .customer-context {
+    @apply lg:col-span-2 xl:col-span-1;
+  }
+  .context-customer {
+    @apply grid justify-items-center gap-2 border-b border-border p-5 text-center;
+  }
+  .context-customer h2 {
+    @apply m-0 text-sm;
+  }
+  .context-customer span {
+    @apply text-xs text-muted;
+  }
+  .context-block {
+    @apply grid gap-3 border-b border-border p-4;
+  }
+  .context-block > div:first-child {
+    @apply flex items-center justify-between gap-2;
+  }
+  .context-block h3 {
+    @apply m-0 text-xs;
+  }
+  .context-block > p {
+    @apply m-0 grid gap-1 text-xs text-muted;
+  }
+  .context-block strong {
+    @apply text-ink;
+  }
+  .context-product {
+    @apply flex items-center gap-2;
+  }
+  .context-product img {
+    @apply size-12 rounded-lg object-cover;
+  }
+  .context-product span {
+    @apply grid gap-1 text-xs;
+  }
+  .context-product small {
+    @apply text-[10px] text-muted;
+  }
+  .context-block label {
+    @apply text-xs;
+  }
+  .pos-page {
+    @apply grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px];
+  }
+  .pos-products {
+    @apply min-w-0;
+  }
+  .pos-search {
+    @apply my-4 w-full rounded-lg border border-border bg-surface p-3 text-sm;
+  }
+  .pos-grid {
+    @apply grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4;
+  }
+  .pos-grid > button {
+    @apply overflow-hidden rounded-xl border border-border bg-surface text-left;
+  }
+  .pos-grid img {
+    @apply aspect-square w-full object-cover;
+  }
+  .pos-grid > button > span {
+    @apply grid gap-2 p-3 text-xs;
+  }
+  .pos-grid b {
+    @apply text-primary-text;
+  }
+  .pos-grid small {
+    @apply text-muted;
+  }
+  .pos-customer,
+  .pos-payment,
+  .pos-total {
+    @apply border-t border-border p-4;
+  }
+  .pos-customer label {
+    @apply grid gap-2 text-xs;
+  }
+  .pos-customer select {
+    @apply rounded-lg border border-border bg-surface p-2;
+  }
+  .pos-lines {
+    @apply min-h-40;
+  }
+  .pos-lines > div:not(.pos-empty) {
+    @apply flex flex-wrap items-center gap-2 border-t border-border p-3;
+  }
+  .pos-lines img {
+    @apply size-10 rounded-lg object-cover;
+  }
+  .pos-lines > div > span {
+    @apply grid flex-1 gap-1 text-xs;
+  }
+  .pos-lines > div > div {
+    @apply flex items-center gap-2;
+  }
+  .pos-lines button {
+    @apply grid size-6 place-items-center rounded border border-border;
+  }
+  .pos-lines small {
+    @apply text-[10px] text-muted;
+  }
+  .pos-lines > div > strong {
+    @apply text-xs;
+  }
+  .pos-empty,
+  .pos-success {
+    @apply grid justify-items-center gap-3 rounded-xl border border-border bg-surface p-8 text-center;
+  }
+  .pos-empty h3,
+  .pos-empty p {
+    @apply m-0 text-xs;
+  }
+  .pos-payment h3 {
+    @apply text-xs;
+  }
+  .pos-payment > div {
+    @apply grid grid-cols-2 gap-2;
+  }
+  .pos-payment button {
+    @apply rounded-lg border border-border p-2 text-xs;
+  }
+  .pos-payment button.active {
+    @apply border-primary bg-primary-soft text-primary-text;
+  }
+  .pos-payment p {
+    @apply mb-0 mt-2 text-xs text-muted;
+  }
+  .pos-total > span {
+    @apply flex justify-between text-lg;
+  }
+  .pos-total > button {
+    @apply my-3 w-full rounded-lg bg-primary p-3 text-sm font-semibold text-white;
+  }
+  .pos-total small {
+    @apply block text-xs text-muted;
+  }
+  .pos-error {
+    @apply px-4 text-xs text-danger;
+  }
+  .pos-success {
+    @apply mx-auto max-w-lg;
+  }
+  .pos-success > div {
+    @apply w-full;
+  }
+  .pos-success p {
+    @apply flex justify-between gap-4 text-sm;
+  }
+  .pos-success > button {
+    @apply w-full rounded-lg border border-border px-4 py-3;
+  }
+  .activity-layout {
+    @apply grid gap-4 md:grid-cols-[220px_minmax(0,1fr)];
+  }
+  .activity-filters {
+    @apply flex flex-wrap gap-2 md:flex-col;
+  }
+  .activity-filters button {
+    @apply flex justify-between rounded-lg px-3 py-3 text-left text-sm text-muted;
+  }
+  .activity-filters button.active {
+    @apply bg-primary-soft text-primary-text;
+  }
+  .activity-date {
+    @apply border-b border-border px-5 py-3 text-xs text-muted;
+  }
+  .activity-item {
+    @apply flex w-full items-center gap-3 border-b border-border p-5 text-left;
+  }
+  .activity-item.unread {
+    @apply bg-primary-soft;
+  }
+  .activity-item i {
+    @apply grid size-10 shrink-0 place-items-center rounded-lg bg-canvas not-italic text-primary-text;
+  }
+  .activity-item > span {
+    @apply flex-1;
+  }
+  .activity-item strong {
+    @apply text-sm;
+  }
+  .activity-item p {
+    @apply mb-1 mt-1 text-xs text-muted;
+  }
+  .activity-item small,
+  .activity-item b {
+    @apply text-xs text-muted;
+  }
+  .fulfilment-board {
+    @apply grid gap-3 md:grid-cols-2 xl:grid-cols-4;
+  }
+  .fulfilment-board > section {
+    @apply min-w-0 rounded-xl border border-border bg-canvas p-3;
+  }
+  .fulfilment-stage-head {
+    @apply mb-3 flex justify-between gap-2 text-xs;
+  }
+  .fulfilment-board article {
+    @apply mb-3 rounded-xl border border-border bg-surface p-3;
+  }
+  .fulfilment-board article > div {
+    @apply flex flex-wrap items-center justify-between gap-2 text-xs;
+  }
+  .fulfilment-board h3 {
+    @apply mb-1 mt-3 text-sm;
+  }
+  .fulfilment-board p,
+  .fulfilment-board small {
+    @apply text-xs text-muted;
+  }
+  .fulfilment-board article > div:last-child {
+    @apply mt-3;
+  }
+  .fulfilment-table {
+    @apply overflow-x-auto;
+  }
+  .fulfilment-row {
+    @apply grid min-w-[750px] grid-cols-[1fr_1.5fr_1fr_1fr_1.5fr_1fr] items-center gap-3 border-b border-border p-4 text-xs;
+  }
+  .fulfilment-row.head {
+    @apply bg-canvas font-semibold text-muted;
+  }
+  .store-management-grid {
+    @apply grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px];
+  }
+  .preview-browser {
+    @apply border-b border-border p-3 text-xs text-muted;
+  }
+  .preview-hero {
+    @apply grid justify-items-start gap-4 bg-primary-soft p-8;
+  }
+  .preview-hero > span {
+    @apply text-xs text-primary-text;
+  }
+  .preview-hero h2 {
+    @apply max-w-md text-3xl;
+  }
+  .preview-hero button {
+    @apply rounded-lg bg-primary px-4 py-3 text-sm text-white;
+  }
+  .preview-products {
+    @apply grid grid-cols-3 gap-3 p-4;
+  }
+  .preview-products img {
+    @apply aspect-square w-full rounded-lg object-cover;
+  }
+  .store-management-actions {
+    @apply p-5;
+  }
+  .store-management-actions h2 {
+    @apply text-base;
+  }
+  .setup-row {
+    @apply flex items-center gap-3 border-b border-border py-4 text-xs;
+  }
+  .setup-row > span {
+    @apply grid size-7 place-items-center rounded-full bg-primary-soft text-primary-text;
+  }
+  .setup-row strong {
+    @apply flex-1;
+  }
+  .setup-row small {
+    @apply mt-1 block font-normal text-muted;
+  }
+  .setup-row b {
+    @apply text-success;
+  }
+  .store-url-card {
+    @apply mt-5 rounded-lg bg-canvas p-3 text-xs;
+  }
+  .store-url-card p {
+    @apply my-2 break-all text-muted;
+  }
+  .store-app {
+    @apply flex min-h-screen flex-col bg-canvas text-ink;
+  }
+  .store-header {
+    @apply sticky top-0 z-20 flex flex-wrap items-center justify-between gap-4 border-b border-border bg-surface px-5 py-4 md:px-10;
+  }
+  .store-brand {
+    @apply flex items-center gap-3 text-sm md:text-lg;
+  }
+  .store-brand > span {
+    @apply grid size-10 place-items-center rounded-xl bg-primary text-sm text-white;
+  }
+  .store-header nav {
+    @apply order-3 flex w-full justify-center gap-6 text-xs md:order-none md:w-auto md:text-sm;
+  }
+  .store-cart-button {
+    @apply inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm;
+  }
+  .store-cart-button > span {
+    @apply grid size-5 place-items-center rounded-full bg-primary text-xs text-white;
+  }
+  .store-main,
+  .store-product-page,
+  .store-checkout-layout {
+    @apply mx-auto w-full max-w-7xl px-5 py-8 md:px-10;
+  }
+  .store-hero {
+    @apply grid items-center gap-6 rounded-2xl bg-primary-soft p-6 md:grid-cols-2 md:p-10;
+  }
+  .store-hero h1 {
+    @apply mb-4 max-w-lg text-4xl md:text-5xl;
+  }
+  .store-hero p {
+    @apply mb-6 max-w-md text-sm leading-relaxed text-muted;
+  }
+  .store-hero > div > span {
+    @apply mb-4 block text-xs font-semibold uppercase tracking-widest text-primary-text;
+  }
+  .hero-product {
+    @apply relative overflow-hidden rounded-xl;
+  }
+  .hero-product img {
+    @apply h-64 w-full object-cover md:h-96;
+  }
+  .hero-product > span {
+    @apply absolute bottom-4 left-4 rounded-full bg-surface px-3 py-2 text-xs;
+  }
+  .store-benefits {
+    @apply grid gap-5 border-b border-border py-8 md:grid-cols-3;
+  }
+  .store-benefits > span {
+    @apply grid gap-2 text-sm;
+  }
+  .store-benefits small {
+    @apply text-xs text-muted;
+  }
+  .store-catalogue {
+    @apply scroll-mt-32 py-8;
+  }
+  .store-section-heading {
+    @apply mb-5 flex flex-wrap items-end justify-between gap-3;
+  }
+  .store-section-heading span {
+    @apply text-xs uppercase tracking-widest text-primary-text;
+  }
+  .store-section-heading h2 {
+    @apply mb-0 mt-2 text-2xl;
+  }
+  .store-section-heading p {
+    @apply mb-0 text-sm text-muted;
+  }
+  .store-filters {
+    @apply mb-6 flex flex-wrap items-center justify-between gap-3;
+  }
+  .store-filters input {
+    @apply w-full rounded-lg border border-border bg-surface px-4 py-3 text-sm md:w-72;
+  }
+  .store-filters > div {
+    @apply flex flex-wrap gap-2;
+  }
+  .store-filters button {
+    @apply rounded-full border border-border px-4 py-2 text-sm;
+  }
+  .store-filters button.active {
+    @apply border-primary bg-primary-soft text-primary-text;
+  }
+  .store-product-grid {
+    @apply grid gap-5 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  .store-product-card {
+    @apply overflow-hidden rounded-xl border border-border bg-surface;
+  }
+  .store-product-image {
+    @apply relative block overflow-hidden;
+  }
+  .store-product-image img {
+    @apply aspect-square w-full object-cover;
+  }
+  .store-product-image > span {
+    @apply absolute bottom-3 left-3 rounded-full bg-surface px-3 py-1 text-xs;
+  }
+  .store-product-card > div {
+    @apply grid gap-2 p-4;
+  }
+  .store-product-card > div > span,
+  .store-product-card small {
+    @apply text-xs text-muted;
+  }
+  .store-product-card > div > a {
+    @apply text-base font-semibold;
+  }
+  .store-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white;
+  }
+  .store-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-border bg-surface px-5 py-3 text-sm;
+  }
+  .store-back {
+    @apply mb-5 inline-flex items-center gap-2 text-sm text-primary-text;
+  }
+  .store-product-detail {
+    @apply grid gap-8 lg:grid-cols-2;
+  }
+  .store-detail-image {
+    @apply overflow-hidden rounded-xl bg-primary-soft;
+  }
+  .store-detail-image img {
+    @apply h-full max-h-[600px] w-full object-cover;
+  }
+  .store-detail-copy {
+    @apply grid content-start gap-5 py-4;
+  }
+  .store-detail-copy h1 {
+    @apply mb-0 text-3xl;
+  }
+  .store-detail-copy > span {
+    @apply text-xs uppercase tracking-widest text-primary-text;
+  }
+  .store-detail-copy > strong {
+    @apply text-2xl;
+  }
+  .store-detail-copy p {
+    @apply mb-0 text-sm leading-relaxed text-muted;
+  }
+  .store-detail-copy label {
+    @apply grid gap-2 text-sm;
+  }
+  .store-detail-copy select {
+    @apply rounded-lg border border-border bg-surface px-3 py-3;
+  }
+  .store-availability {
+    @apply text-sm text-success;
+  }
+  .store-policy {
+    @apply border-t border-border pt-4;
+  }
+  .store-policy strong {
+    @apply mb-2 block text-sm;
+  }
+  .store-checkout-layout {
+    @apply grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px];
+  }
+  .store-checkout-layout h1 {
+    @apply text-3xl;
+  }
+  .store-cart-line {
+    @apply grid grid-cols-[64px_minmax(0,1fr)] items-center gap-3 border-b border-border py-5 sm:grid-cols-[64px_minmax(0,1fr)_auto_auto];
+  }
+  .store-cart-line > img {
+    @apply size-16 rounded-lg object-cover;
+  }
+  .store-cart-line > span {
+    @apply grid gap-2 text-sm;
+  }
+  .store-cart-line small {
+    @apply text-xs text-muted;
+  }
+  .store-cart-line > span button {
+    @apply w-fit text-xs text-danger;
+  }
+  .store-cart-line > strong {
+    @apply text-sm;
+  }
+  .store-order-summary {
+    @apply grid content-start gap-4 self-start rounded-xl border border-border bg-surface p-5;
+  }
+  .store-order-summary h2 {
+    @apply mb-1 text-lg;
+  }
+  .store-order-summary > span,
+  .store-total {
+    @apply flex justify-between gap-3 text-sm;
+  }
+  .store-order-summary small {
+    @apply text-xs text-muted;
+  }
+  .store-total {
+    @apply border-t border-border pt-4 font-semibold;
+  }
+  .store-form-section {
+    @apply my-6 grid gap-4 border-b border-border pb-6;
+  }
+  .store-form-section h2 {
+    @apply mb-0 text-lg;
+  }
+  .store-form-section > div:not(.delivery-options) {
+    @apply grid gap-4 sm:grid-cols-2;
+  }
+  .store-form-section label {
+    @apply grid gap-2 text-sm;
+  }
+  .store-form-section input {
+    @apply w-full rounded-lg border border-border bg-surface px-3 py-3 text-ink;
+  }
+  .store-form-section label > span:not([role="alert"]) {
+    @apply text-xs text-muted;
+  }
+  .delivery-options {
+    @apply grid gap-3 sm:grid-cols-2;
+  }
+  .delivery-options button {
+    @apply grid gap-2 rounded-lg border border-border bg-surface p-4 text-left text-sm;
+  }
+  .delivery-options button.active {
+    @apply border-primary bg-primary-soft;
+  }
+  .delivery-options small {
+    @apply text-xs text-muted;
+  }
+  .demo-payment-box {
+    @apply mb-5 rounded-xl border border-border bg-primary-soft p-4 text-sm;
+  }
+  .demo-payment-box p {
+    @apply mb-0 mt-2 text-xs leading-relaxed text-muted;
+  }
+  .store-error {
+    @apply text-sm text-danger;
+  }
+  .checkout-mini-item {
+    @apply flex items-center gap-2 text-xs;
+  }
+  .checkout-mini-item > img {
+    @apply size-12 rounded-lg object-cover;
+  }
+  .checkout-mini-item > span {
+    @apply grid flex-1 gap-1;
+  }
+  .checkout-mini-item strong {
+    @apply text-xs;
+  }
+  .store-empty,
+  .store-confirmation {
+    @apply mx-auto grid w-full max-w-2xl justify-items-center gap-4 px-5 py-16 text-center;
+  }
+  .store-empty h1,
+  .store-empty h2,
+  .store-empty p,
+  .store-confirmation p {
+    @apply m-0;
+  }
+  .store-empty p,
+  .store-confirmation > p,
+  .store-confirmation small {
+    @apply text-sm text-muted;
+  }
+  .store-confirmation h1 {
+    @apply mb-0 text-3xl;
+  }
+  .confirmation-mark {
+    @apply grid size-16 place-items-center rounded-full bg-primary-soft text-primary-text;
+  }
+  .confirmation-card {
+    @apply my-3 grid w-full gap-4 rounded-xl border border-border bg-surface p-5 text-sm;
+  }
+  .confirmation-card span {
+    @apply flex flex-wrap justify-between gap-2;
+  }
+  .store-footer {
+    @apply mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-border bg-surface px-5 py-6 text-sm md:px-10;
+  }
+  .store-footer span {
+    @apply text-xs text-muted;
+  }
+}

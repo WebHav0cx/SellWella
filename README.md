@@ -24,6 +24,10 @@ npm test
 npm run build
 ```
 
-The overview, products, inventory, customers, orders, payments, and payment links use Next.js routes. Other navigation destinations retain the supplied placeholder screens. Forms use React Hook Form with Zod validation, and notifications use the shared Sonner toaster. Tailwind utilities and non-hex theme tokens preserve the source design colors.
+The overview, products, inventory, customers, orders, payments, inbox, point of sale, activity centre, fulfilment, and storefront management use Next.js routes. Other navigation destinations retain their placeholder screens. Forms use React Hook Form with Zod validation, and notifications use Sonner. All screens use the shared light/dark theme.
 
-Data is seeded locally and resets on a full reload. Payments and payment links are demos; no backend or payment provider is connected. Axios is installed for future API integration, but the supplied application has no HTTP data requests to migrate.
+The public demo store is at `/store/aminas-fashion`, with product, cart, checkout, and confirmation pages. Its orders share the merchant catalogue, inventory, customers, activities, and fulfilment workflow through one Zustand store. The merchant sidebar lives in `src/components/common/sidebar.tsx`; storefront components live in `src/features/storefront`.
+
+Commerce demo data is validated with Zod before restoring it from browser local storage. It survives full reloads and synchronizes between tabs on the same origin. Cart contents last while navigating within the public store. Payments and payment links remain demos; no backend or payment provider is connected. Axios is installed for future API integration.
+
+Use Node.js 24 or newer for the built-in test runner's TypeScript loading. Commerce tests cover reservation, payment, cancellation, stock validation, and fulfilment.

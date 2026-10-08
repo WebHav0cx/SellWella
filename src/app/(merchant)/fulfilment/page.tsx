@@ -1,4 +1,4 @@
-import { PlannedModule } from "@/features/merchant/planned-module";
+import { FulfilmentPage } from "@/features/merchant/fulfilment";
 export default function Page() {
-  return <PlannedModule name="Deliveries & Fulfilment" />;
+  return <FulfilmentPage />;
 }
