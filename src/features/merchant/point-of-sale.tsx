@@ -206,13 +206,13 @@ export function PointOfSalePage() {
         <div className="pos-payment">
           <h3>Payment method</h3>
           <div>
-            {["Cash", " digital"].map((item) => (
+            {["Cash", "Digital"].map((item) => (
               <button
                 className={paymentMethod === item ? "active" : ""}
                 onClick={() =>
                   setValue(
                     "paymentMethod",
-                    item === "Cash" ? "Cash" : " Digital",
+                    item === "Cash" ? "Cash" : "Digital",
                   )
                 }
                 key={item}
@@ -221,7 +221,7 @@ export function PointOfSalePage() {
               </button>
             ))}
           </div>
-          {paymentMethod === " digital" && (
+          {paymentMethod === "Digital" && (
             <p>No payment provider will be contacted.</p>
           )}
         </div>
